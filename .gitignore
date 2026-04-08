@@ -1,0 +1,33 @@
+# Nuxt dev/build outputs
+.output
+.data
+.nuxt
+.nitro
+.cache
+dist
+.wrangler
+
+# Node dependencies
+node_modules
+.agents/skills/
+.claude/skills/
+.cursor/skills/
+
+# Logs
+logs
+*.log
+
+# Misc
+.DS_Store
+.fleet
+.idea
+
+# Local env files
+.env
+.env.*
+!.env.example
+
+pnpm-lock.yaml
+
+old.jednadvacet.org
+public/_redirects
