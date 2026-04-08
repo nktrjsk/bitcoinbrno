@@ -86,6 +86,15 @@ export default defineNuxtConfig({
   },
 
   vite: {
+    optimizeDeps: {
+      include: [
+        '@vue/devtools-core',
+        '@vue/devtools-kit',
+        '@counterscale/tracker',
+        'leaflet',
+        '@vue-leaflet/vue-leaflet',
+      ],
+    },
     server: {
       allowedHosts: true,
     },

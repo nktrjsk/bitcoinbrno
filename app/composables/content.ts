@@ -22,3 +22,11 @@ export const useDataCommunities = () => {
       .all()
   })
 }
+
+export const useDataCommunitiesMap = () => {
+  return useAsyncData('communities-map', () => {
+    return queryCollection('communities')
+      .select('path', 'title', 'map', 'signal_group')
+      .all()
+  })
+}

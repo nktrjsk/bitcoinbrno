@@ -46,6 +46,13 @@ export default defineContentConfig({
       schema: z.object({
         seo: property(z.any().optional()).editor({ hidden: true }),
         navigation: property(z.any().optional()).editor({ hidden: true }),
+        map: z.object({
+          lat: z.number(),
+          lng: z.number(),
+          zoom: z.number(),
+        }).optional(),
+        signal_group: z.string().optional(),
+        organizers: z.array(z.string()).optional(),
       }),
     }),
 
