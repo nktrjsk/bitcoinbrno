@@ -93,5 +93,13 @@ const { data: blogArticles } = await useDataBlogArticles(props.articleLimit ?? 8
       </UContainer>
     </section>
 
+    <!-- Subscribe CTA -->
+    <section class="py-16">
+      <UContainer>
+        <div class="max-w-2xl mx-auto">
+          <SubscribeCta />
+        </div>
+      </UContainer>
+    </section>
   </div>
 </template>
