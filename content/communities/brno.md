@@ -1,12 +1,21 @@
 ---
 title: Brno
-map: # Najdi ideální souřadnice a zoom tak aby byly vidět všechny důležité body na mapě: https://labs.mapbox.com/location-helper/
+map:
   lat: 49.19263
   lng: 16.61104
   zoom: 12
 signal_group: https://signal.group/#CjQKIL2KyHPPAotCRX1bQS2Kx_NV46s7om25K23Sy5Sf_u2pEhB1vJrPckxkIryjgdeTybmx
 organizers:
-  - honzapoboril
-  - mara
-  - yanas
+  - gorrdy
+  - jezevec
+  - apin
+meetup_schedule: každé druhé úterý v měsíci v 19:00
+btcmap_community_id: brno
+recordings:
+  - title: Bitcoin jako peníze
+    url: https://www.youtube.com/watch?v=dQw4w9WgXcQ
+    date: 2024-11-12
+  - title: Lightning Network v praxi
+    url: https://www.youtube.com/watch?v=dQw4w9WgXcQ
+    date: 2024-09-10
 ---
