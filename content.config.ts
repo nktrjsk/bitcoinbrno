@@ -51,6 +51,7 @@ export default defineContentConfig({
           lng: z.number(),
           zoom: z.number(),
         }).optional(),
+        region: z.string().optional(),
         signal_group: z.string().optional(),
         organizers: z.array(z.string()).optional(),
         meetup_schedule: z.string().optional(),

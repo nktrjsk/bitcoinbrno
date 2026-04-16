@@ -1,5 +1,6 @@
 ---
 title: Brno
+region: Jihomoravský kraj
 map:
   lat: 49.19263
   lng: 16.61104
