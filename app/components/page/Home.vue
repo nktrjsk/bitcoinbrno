@@ -1,3 +1,25 @@
+<script setup lang="ts">
+const props = withDefaults(defineProps<{
+  articleColumns?: 1 | 2 | 3 | 4 | 5 | 6
+  articleLimit?: number
+}>(), {
+  articleColumns: 4,
+  articleLimit: 8,
+})
+
+const gridColsClass: Record<number, string> = {
+  1: 'grid-cols-1',
+  2: 'grid-cols-1 sm:grid-cols-2',
+  3: 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3',
+  4: 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-4',
+  5: 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-5',
+  6: 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-6',
+}
+
+const { data: blogCategories } = useDataBlogCategories()
+const { data: blogArticles } = await useDataBlogArticles(props.articleLimit ?? 8)
+</script>
+
 <template>
   <div>
     <!-- Hero -->
@@ -30,5 +52,46 @@
         </div>
       </UContainer>
     </section>
+
+    <!-- Blog posts grid -->
+    <section class="py-16">
+      <UContainer>
+        <div class="flex items-center justify-between mb-8">
+          <h2 class="text-2xl font-bold">
+            Nejnovější články
+          </h2>
+          <UButton to="/blog" variant="link" color="neutral" trailing-icon="i-lucide-arrow-right">
+            Všechny články
+          </UButton>
+        </div>
+        <div :class="`grid gap-6 ${gridColsClass[props.articleColumns ?? 4]}`">
+          <UBlogPost
+            v-for="article in blogArticles"
+            :key="article.path"
+            :title="article.title"
+            :description="article.description"
+            :image="article.thumbnail || 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAAD0lEQVR4AQEEAPv/AMzMzATMAmVMDHrmAAAAAElFTkSuQmCC'"
+            :date="article.published"
+            :to="article.path"
+            orientation="vertical"
+            variant="card"
+          />
+        </div>
+      </UContainer>
+      <UContainer>
+	<div class="flex flex-wrap gap-3 justify-center py-4">
+	  <UButton
+	    v-for="category in blogCategories"
+	    :key="category.path"
+	    :to="category.path"
+	    variant="outline"
+	    color="neutral"
+	  >
+	    {{ category.title }}
+	  </UButton>
+	</div>
+      </UContainer>
+    </section>
+
   </div>
 </template>

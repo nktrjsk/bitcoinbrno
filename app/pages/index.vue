@@ -3,5 +3,5 @@ useHead({ title: 'Jednadvacet – bitcoinové komunity v ČR' })
 </script>
 
 <template>
-  <PageHome />
+  <PageHome :article-columns="3" :article-limit="3"/>
 </template>
