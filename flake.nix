@@ -18,6 +18,7 @@
             pkgs.git
             pkgs.claude-code
             pkgs.patchelf
+	    pkgs.gh
           ];
           shellHook = ''
             echo "jednadvacet-web dev shell ready"
