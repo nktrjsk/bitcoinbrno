@@ -41,10 +41,17 @@ Blog article filenames follow `YYYYMMDD.slug.md` — the date is extracted by `s
 
 ### Key conventions
 
-- Use **Nuxt UI** components (`@nuxt/ui`) — never write custom HTML where a UI component exists.
+- Use **Nuxt UI** components (`@nuxt/ui`) — never write custom HTML where a UI component exists. Theme: primary `orange`, gray `cool`.
 - Shared composables for content queries are in `app/composables/content.ts` — use them instead of writing raw `queryCollection` calls in pages.
-- Components used in page templates follow the `Page*` naming convention (e.g. `PageBlogArticle`, `PageBlogCategory`, `PageCommunity`).
+- Components used in page templates follow the `Page*` naming convention (e.g. `PageBlogArticle`, `PageBlogCategory`, `PageCommunity`), stored in `app/components/page/`. Layout components (navbar, footer, logo) live in `app/components/app/`.
+- `CommunityMap.client.vue` uses Leaflet (`@vue-leaflet/vue-leaflet`) and an embedded SVG map of Czech regions — keep it client-only.
 - Do **not** run any git commands (`commit`, `push`, `merge`, `rebase`, `reset`).
+
+### Infrastructure
+
+- **`@nuxthub/core`** — provides a Cloudflare D1 SQLite database (binding `DB`, database `web`) used at runtime.
+- **`nuxt-studio`** — CMS integration for content editing; branch defaults to `master` via env `STUDIO_BRANCH_NAME`.
+- Analytics collected via `/cntrsclc` route (proxied to avoid blockers) using `@counterscale/tracker`.
 
 ### NixOS / dev environment
 
