@@ -274,6 +274,7 @@
               <label for="pz-email">{{ t.signup.emailLabel }}</label>
               <input id="pz-email" type="email" :placeholder="t.signup.emailPh" v-model="email" />
             </div>
+            <div class="pz-signup-or">a/nebo</div>
             <div class="pz-input-group">
               <label for="pz-phone">{{ t.signup.phoneLabel }}</label>
               <input id="pz-phone" type="tel" :placeholder="t.signup.phonePh" v-model="phone" />
@@ -1585,6 +1586,26 @@ const t = computed(() => copy[lang.value])
   margin: 0 0 4px;
   font-size: 13px;
   color: #f87171;
+}
+
+.pz-signup-or {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 13px;
+  font-family: var(--pz-font-mono);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  opacity: 0.6;
+  margin: 4px 0;
+}
+.pz-signup-or::before,
+.pz-signup-or::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: currentColor;
+  opacity: 0.3;
 }
 
 .pz-input-hint {
