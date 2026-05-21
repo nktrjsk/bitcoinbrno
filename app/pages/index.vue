@@ -5,19 +5,7 @@
     <nav class="pz-nav">
       <div class="pz-wrap pz-nav-inner">
         <a href="#top" class="pz-brand">
-          <svg viewBox="0 0 64 64" width="36" height="36" aria-hidden="true">
-            <defs><clipPath id="pz-bm-bite"><path d="M 32 4 L 60 56 L 4 56 Z" /></clipPath></defs>
-            <g clip-path="url(#pz-bm-bite)">
-              <path d="M 32 4 L 60 56 L 4 56 Z" fill="var(--pz-accent)" />
-              <circle cx="22" cy="40" r="3" fill="var(--pz-card)" opacity="0.85" />
-              <circle cx="38" cy="44" r="2.4" fill="var(--pz-card)" opacity="0.85" />
-              <circle cx="30" cy="30" r="2.2" fill="var(--pz-card)" opacity="0.85" />
-              <circle cx="44" cy="36" r="1.8" fill="var(--pz-card)" opacity="0.85" />
-            </g>
-            <path d="M 32 4 L 60 56 L 4 56 Z" fill="none" stroke="var(--pz-ink)" stroke-width="2.5" stroke-linejoin="round" />
-            <circle cx="52" cy="14" r="9" fill="var(--pz-bg)" stroke="var(--pz-ink)" stroke-width="2" />
-            <text x="52" y="18.5" text-anchor="middle" font-family="var(--pz-font-display)" font-size="11" font-weight="700" fill="var(--pz-ink)">₿</text>
-          </svg>
+          <img src="/bitcoinbrno.jpg" alt="Bitcoin Brno" style="height:36px;width:auto;border-radius:8px;">
           <span>Pizza Day Brno</span>
         </a>
         <div class="pz-nav-links">
@@ -41,7 +29,7 @@
         <svg viewBox="0 0 80 80" class="pz-kids-badge-ring" aria-hidden="true">
           <defs><path id="pz-kb-arc" d="M 40,40 m -32,0 a 32,32 0 1,1 64,0 a 32,32 0 1,1 -64,0" /></defs>
           <text font-size="7.6" letter-spacing="1.4" font-family="var(--pz-font-mono)" fill="currentColor">
-            <textPath href="#pz-kb-arc" startOffset="0">• {{ t.hero.kidsBadge.sub }} • {{ t.hero.kidsBadge.sub }} </textPath>
+            <textPath href="#pz-kb-arc" startOffset="0" textLength="201.06" lengthAdjust="spacing"> • {{ t.hero.kidsBadge.sub }} • {{ t.hero.kidsBadge.sub }} </textPath>
           </text>
         </svg>
         <div class="pz-kids-badge-core">
@@ -88,30 +76,7 @@
 
       <!-- Right column: hero mark -->
       <div class="pz-hero-mark-wrap">
-        <svg viewBox="0 0 400 400" class="pz-hero-mark" aria-hidden="true">
-          <defs>
-            <clipPath id="pz-hm-slice"><path d="M 200 30 L 370 350 L 30 350 Z" /></clipPath>
-            <radialGradient id="pz-hm-shade" cx="50%" cy="35%" r="65%">
-              <stop offset="0%" stop-color="var(--pz-accent-soft)" stop-opacity="1" />
-              <stop offset="100%" stop-color="var(--pz-accent)" stop-opacity="1" />
-            </radialGradient>
-          </defs>
-          <g clip-path="url(#pz-hm-slice)">
-            <path d="M 200 30 L 370 350 L 30 350 Z" fill="url(#pz-hm-shade)" />
-            <circle cx="140" cy="240" r="14" fill="var(--pz-card)" />
-            <circle cx="260" cy="270" r="11" fill="var(--pz-card)" />
-            <circle cx="190" cy="180" r="9" fill="var(--pz-card)" />
-            <circle cx="290" cy="200" r="7" fill="var(--pz-card)" />
-            <circle cx="160" cy="310" r="8" fill="var(--pz-card)" />
-            <circle cx="225" cy="320" r="9" fill="var(--pz-card)" />
-            <path d="M 120 200 Q 130 195 140 205 L 132 215 Z" fill="var(--pz-secondary)" opacity="0.85" />
-            <path d="M 260 230 Q 270 225 280 235 L 272 245 Z" fill="var(--pz-secondary)" opacity="0.85" />
-            <path d="M 200 270 Q 210 265 220 275 L 212 285 Z" fill="var(--pz-secondary)" opacity="0.85" />
-          </g>
-          <path d="M 200 30 L 370 350 L 30 350 Z" fill="none" stroke="var(--pz-ink)" stroke-width="6" stroke-linejoin="round" />
-          <circle cx="332" cy="68" r="44" fill="var(--pz-bg)" stroke="var(--pz-ink)" stroke-width="5" />
-          <text x="332" y="86" text-anchor="middle" font-family="var(--pz-font-display)" font-size="56" font-weight="700" fill="var(--pz-ink)">₿</text>
-        </svg>
+        <img src="/bitcoinbrno.jpg" alt="Bitcoin Brno" class="pz-hero-mark" style="object-fit:cover;border-radius:8px;">
       </div>
     </header>
 
@@ -179,7 +144,7 @@
         <div class="pz-section-head">
           <span class="pz-eyebrow">{{ t.getting.eyebrow }}</span>
           <h2 class="pz-h-section">{{ t.getting.head }}</h2>
-          <p class="pz-lede">{{ t.getting.lede }}</p>
+          <p class="pz-lede" v-html="t.getting.lede" />
         </div>
         <div class="pz-getting">
           <div class="pz-transit-list">
@@ -195,10 +160,7 @@
           </div>
           <aside class="pz-map-card">
             <div class="pz-map-stage">
-              <svg class="pz-map-pin" viewBox="0 0 36 36">
-                <path d="M18 2 C 10 2 5 8 5 15 C 5 23 18 34 18 34 C 18 34 31 23 31 15 C 31 8 26 2 18 2 Z" fill="var(--pz-accent)" stroke="var(--pz-ink)" stroke-width="2" />
-                <circle cx="18" cy="15" r="4.5" fill="var(--pz-card)" />
-              </svg>
+              <PizzaDayMap />
             </div>
             <div class="pz-map-meta">
               <span class="pz-map-name">{{ t.getting.park.name }}</span>
@@ -299,17 +261,7 @@
     <footer class="pz-footer">
       <div class="pz-wrap pz-footer-inner">
         <div class="pz-brand">
-          <svg viewBox="0 0 64 64" width="28" height="28" aria-hidden="true">
-            <defs><clipPath id="pz-bm-bite-f"><path d="M 32 4 L 60 56 L 4 56 Z" /></clipPath></defs>
-            <g clip-path="url(#pz-bm-bite-f)">
-              <path d="M 32 4 L 60 56 L 4 56 Z" fill="var(--pz-accent)" />
-              <circle cx="22" cy="40" r="3" fill="var(--pz-card)" opacity="0.85" />
-              <circle cx="38" cy="44" r="2.4" fill="var(--pz-card)" opacity="0.85" />
-            </g>
-            <path d="M 32 4 L 60 56 L 4 56 Z" fill="none" stroke="var(--pz-ink)" stroke-width="2.5" stroke-linejoin="round" />
-            <circle cx="52" cy="14" r="9" fill="var(--pz-bg)" stroke="var(--pz-ink)" stroke-width="2" />
-            <text x="52" y="18.5" text-anchor="middle" font-family="var(--pz-font-display)" font-size="11" font-weight="700" fill="var(--pz-ink)">₿</text>
-          </svg>
+          <img src="/bitcoinbrno.jpg" alt="Bitcoin Brno" style="height:28px;width:auto;border-radius:8px;">
           <span>{{ t.footer.rights }}</span>
         </div>
         <div class="pz-footer-links">
@@ -397,9 +349,9 @@ const copy = {
     nav: { what: 'Co tě čeká', schedule: 'Program', getting: 'Jak se tam dostat', faq: 'Časté dotazy', signup: 'Newsletter' },
     hero: {
       title: ['Pizza Day', 'v parku'],
-      sub: 'Bezplatná pizza, slunce v trávě a parta lidí, kteří ti rádi vysvětlí, co je Bitcoin — beze spěchu, bez žargonu. Přijď s rodinou, dětmi i bez zájmu o krypto. Stačí mít hlad.',
-      time: 'So 22. května · 13:00–18:00',
-      place: 'Lužánky · louka u hudebního pavilonu',
+      sub: 'Pizza, park a parta lidí, kteří ti rádi vysvětlí, co je Bitcoin — beze spěchu a bez žargonu. Přijď s rodinou, dětmi, i když se nezajímáš o bitcoin. Stačí mít hlad.',
+      time: 'Ne 24. května · 15:00',
+      place: 'Tyršův sad',
       cta: 'Přihlásit se k odběru',
       cta2: 'Program dne',
       stickers: { free: 'Pizza zdarma', curious: 'Začátečníci vítáni', bitcoiners: 'Ochotní bitcoineři po ruce' },
@@ -428,21 +380,21 @@ const copy = {
       ],
     },
     bring: {
-      head: 'Co máme · co si vezmi', eyebrow: 'Praktické',
+      head: 'Co máme / co si vezmi', eyebrow: 'Info',
       lede: 'Akce je pod širým nebem. Připrav se na piknikový režim.',
-      we:  { title: 'Připravíme', items: ['Pizzu (dokud máme)', 'Vodu a kávu', 'Lidi, co rádi vysvětlují', 'Stínovou plachtu', 'Dětský koutek s křídami'] },
-      you: { title: 'Vezmi si s sebou', items: ['Deku nebo karimatku', 'Telefon (pokud chceš peněženku)', 'Opalovací krém', 'Lahev na vodu', 'Děti, kamarády, klidně i psa'] },
+      we:  { title: 'Připravíme', items: ['Pizzu (dokud máme)', 'Nealko', 'Bitcoinery, co rádi vysvětlují', 'Stínovou plachtu', 'Dětský koutek s křídami'] },
+      you: { title: 'Vezmi si s sebou', items: ['Deku nebo karimatku', 'Telefon, nebo i Trezor (pokud chceš pomoct s nastavením peněženky)', 'Opalovací krém', 'Lahev na vodu', 'Děti, kamarády, klidně i psa'] },
     },
     getting: {
       head: 'Jak se tam dostat', eyebrow: 'Doprava',
-      lede: 'Park leží 10 minut chůze od hlavního nádraží. Doporučujeme MHD nebo kolo — parkování v okolí je omezené.',
+      lede: 'Park leží kousek od centra. <b>Doporučujeme MHD nebo kolo</b>, parkování v okolí je omezené.',
       rows: [
-        { ico: 'tram', title: 'Tramvají', body: 'Linky <em>1</em>, <em>6</em> · zastávka Lužánky. Dál 3 minuty pěšky do parku.' },
-        { ico: 'walk', title: 'Pěšky z centra', body: 'Z náměstí Svobody přibližně 15 minut severovýchodním směrem.' },
-        { ico: 'bike', title: 'Na kole', body: 'Stojany u hlavního vstupu do parku, hned vedle pavilonu.' },
-        { ico: 'car',  title: 'Autem', body: 'Parkování v okolí omezené (modrá zóna). Doporučujeme P+R Stará osada nebo MHD.' },
+	{ ico: 'tram', title: 'Tramvají', body: 'Linky <em>1</em>, <em>6</em> · zastávka <b>Antonínská</b>. Odtud je to pár minut pěšky do parku.' },
+	{ ico: 'walk', title: 'Pěšky z centra', body: 'Z náměstí Svobody přibližně <b>20</b> minut, z Moravského náměstí <b>10</b> minut.' },
+        { ico: 'bike', title: 'Na kole', body: 'TBD' },
+	{ ico: 'car',  title: 'Autem', body: 'Parkování v okolí <b>omezené</b> (modrá zóna). V blízkosti je <b>Parkovací dům Rozmarýn</b>.' },
       ],
-      park: { name: 'Lužánky · pavilon', coord: '49.2061° N · 16.6075° E' },
+      park: { name: 'Tyršův sad', coord: '49.2028° N · 16.6030° E' },
     },
     faq: {
       head: 'Časté dotazy', eyebrow: 'FAQ',
@@ -450,16 +402,16 @@ const copy = {
       rows: [
         { q: 'Musím o Bitcoinu něco vědět?', a: 'Vůbec nic. Akce je primárně pro lidi, kteří o tom nikdy neslyšeli nebo se za to stydí ptát. Žádná hloupá otázka neexistuje.' },
         { q: 'Je pizza opravdu zdarma?', a: 'Ano. Pizza je placená z příspěvků místní komunity. Bereme to jako pohoštění pro každého, kdo přijde. Když nám dojde, doobjednáme — dokud finance stačí.' },
-        { q: 'Je to vhodné pro děti?', a: 'Ano, je to rodinná akce. V parku je dětské hřiště, máme dětský koutek s křídami a aktivity přizpůsobené dětem 4+.' },
+        { q: 'Je akce vhodná pro děti?', a: 'Ano, je to rodinná akce. V parku je dětské hřiště (+ ještě něco?)' },
         { q: 'Co když bude pršet?', a: 'Pokud bude lehký déšť, schováme se pod stromy a stínovou plachtu. Pokud přijde bouřka, akci přesuneme — informace pošleme do newsletteru ráno před akcí.' },
         { q: 'Můžu platit Bitcoinem za merch?', a: 'Ano, přijímáme Lightning i hotovost (CZK). Karty bohužel ne — jsme v parku.' },
-        { q: 'Musím se předem registrovat?', a: 'Ne. Stačí přijít. Pokud se chceš dozvědět o dalších akcích, přihlas se k odběru novinek.' },
-        { q: 'Mluví se česky, nebo anglicky?', a: 'Oboje. Většina pomocníků mluví česky i anglicky, najdeš lidi, se kterými si rozumíš.' },
+	{ q: 'Musím se předem registrovat?', a: '<b>Ne.</b> Stačí přijít. Pokud se chceš dozvědět o dalších akcích, přihlas se k odběru novinek.' },
+        { q: 'Mluví se česky, nebo anglicky?', a: 'Oboje. Většina bitcoinerů mluví česky i anglicky, najdeš lidi, se kterými si rozumíš.' },
       ],
     },
     org: {
       head: 'Kdo to pořádá', eyebrow: 'Organizátoři',
-      lede: 'Pizza Day Brno pořádá místní bitcoinová komunita — parta dobrovolníků, kteří se scházejí každé druhé úterý a rádi sdílejí, co vědí. Žádné prodejní řeči, žádné kurzy „rychle zbohatnout". Jen lidi.',
+      lede: 'Pizza Day Brno pořádá místní bitcoinová komunita — parta dobrovolníků, kteří se scházejí každé druhé pondělí (Bitcoin Beer) a rádi sdílejí, co se dozvěděli, nebo si jen tak povídají o čemkoliv. Nejsme banda finančních poradců a investorů, jsme normální lidi.',
       cta: 'Připoj se do skupiny',
       links: [
         { label: 'Signal', href: 'https://signal.group/#CjQKIK0vXB9EYpepoD4CL_aB2BXXOTSk8rXX26bjIfVTmeZqEhCOdTX83XGSUnYr6BIwMgwy' },
@@ -471,19 +423,19 @@ const copy = {
     },
     signup: {
       head: 'Buď u dalších akcí', headAccent: 'dalších akcí', eyebrow: 'Newsletter',
-      lede: 'Maximálně jeden e-mail měsíčně. Pošleme upozornění před akcemi, případně změny v programu (déšť, posun času). Žádný spam, žádné prodejní řeči.',
+      lede: 'Maximálně jeden e-mail měsíčně. Pošleme upozornění před akcemi, případně změny v programu (déšť, posun času). Nespamujeme.',
       emailLabel: 'E-mail', emailPh: 'tvoje@adresa.cz',
       phoneLabel: 'Telefon / SMS', phonePh: '+420',
       contactHint: 'Vyplň aspoň jedno z polí výše.',
       langLabel: 'Preferovaný jazyk',
       submit: 'Přihlásit se',
-      fine: 'Odhlásit se můžeš jedním klikem. Údaje nikam neprodáváme.',
+      fine: 'Odhlásit se můžeš jedním klikem. Údaje neposkytujeme třetím stranám.',
       success: 'Hotovo! Uvidíme se v parku.',
       successSub: 'Potvrzovací e-mail je na cestě. Pokud nedorazí do pěti minut, mrkni do spamu.',
     },
-    fab: { label: 'Newsletter', sub: 'Dej vědět, kdy bude další akce' },
+    fab: { label: 'Pozvánky do mailu/mobilu', sub: 'Dozvíš se, kdy bude další akce' },
     footer: {
-      rights: 'Pizza Day Brno · komunitní akce',
+      rights: 'Pizza Day Brno',
       links: [{ label: 'GDPR / Soukromí', href: '#' }, { label: 'Kontakt', href: 'mailto:hello@pizzadaybrno.cz' }],
     },
   },
@@ -493,7 +445,7 @@ const copy = {
       title: ['Pizza Day', 'in the park'],
       sub: 'Free pizza, sunshine on the grass, and a bunch of friendly people who will gladly explain Bitcoin — no rush, no jargon. Bring your family, your kids, your curiosity. Or just your appetite.',
       time: 'Sat 22 May · 13:00–18:00',
-      place: 'Lužánky · meadow by the music pavilion',
+      place: 'Tyršův sad · meadow by the music pavilion',
       cta: 'Get the newsletter',
       cta2: "See what's on",
       stickers: { free: 'Pizza on us', curious: 'Beginners welcome', park: 'In the park · under a tree' },
@@ -531,12 +483,12 @@ const copy = {
       head: 'Getting there', eyebrow: 'Travel',
       lede: 'The park is a 10-minute walk from the main station. Tram or bike is easiest — parking nearby is limited.',
       rows: [
-        { ico: 'tram', title: 'By tram', body: 'Lines <em>1</em>, <em>6</em> · stop Lužánky. Then 3 minutes on foot into the park.' },
+        { ico: 'tram', title: 'By tram', body: 'Lines <em>1</em>, <em>6</em> · stop Tyršův sad. Then 3 minutes on foot into the park.' },
         { ico: 'walk', title: 'On foot from the center', body: 'About 15 minutes northeast from Náměstí Svobody.' },
         { ico: 'bike', title: 'By bike', body: 'Bike racks at the main park entrance, next to the pavilion.' },
         { ico: 'car',  title: 'By car', body: 'Limited paid parking (blue zone) nearby. P+R Stará osada + tram is easier.' },
       ],
-      park: { name: 'Lužánky · pavilion', coord: '49.2061° N · 16.6075° E' },
+      park: { name: 'Tyršův sad · pavilion', coord: '49.2028° N · 16.6030° E' },
     },
     faq: {
       head: 'Frequent questions', eyebrow: 'FAQ',
@@ -1240,38 +1192,8 @@ const t = computed(() => copy[lang.value])
 .pz-map-stage {
   position: relative;
   aspect-ratio: 4 / 3;
-  background:
-    repeating-linear-gradient(45deg, var(--pz-bg-tint) 0 14px, transparent 14px 28px),
-    var(--pz-card);
   border-bottom: 1px solid var(--pz-rule);
   overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.pz-map-stage::before {
-  content: "park map placeholder";
-  position: absolute;
-  inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: var(--pz-font-mono);
-  font-size: 12px;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--pz-muted);
-}
-
-.pz-map-pin {
-  position: absolute;
-  top: 48%;
-  left: 52%;
-  width: 36px;
-  height: 36px;
-  transform: translate(-50%, -100%);
-  z-index: 2;
 }
 
 .pz-map-meta {
