@@ -1,10 +1,18 @@
-import { sqliteTable, integer, text } from 'drizzle-orm/sqlite-core'
+import { sqliteTable, integer, text, unique } from 'drizzle-orm/sqlite-core'
 import { sql } from 'drizzle-orm'
 
-export const pizzadaySubscribers = sqliteTable('pizzaday_subscribers', {
+export const users = sqliteTable('users', {
   id: integer('id').primaryKey({ autoIncrement: true }),
   email: text('email').unique(),
   phone: text('phone').unique(),
   prefLang: text('pref_lang').notNull().default('cs'),
   createdAt: text('created_at').notNull().default(sql`(datetime('now'))`),
 })
+
+export const userSubscriptions = sqliteTable('user_subscriptions', {
+  id: integer('id').primaryKey({ autoIncrement: true }),
+  userId: integer('user_id').notNull().references(() => users.id, { onDelete: 'cascade' }),
+  topic: text('topic').notNull(),
+}, (t) => [
+  unique().on(t.userId, t.topic),
+])

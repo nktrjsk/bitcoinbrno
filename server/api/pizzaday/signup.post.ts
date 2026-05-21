@@ -14,10 +14,10 @@ export default defineEventHandler(async (event) => {
   }
 
   await db
-    .insert(schema.pizzadaySubscribers)
+    .insert(schema.users)
     .values({ email: email || null, phone: phone || null, prefLang })
     .onConflictDoUpdate({
-      target: email ? schema.pizzadaySubscribers.email : schema.pizzadaySubscribers.phone,
+      target: email ? schema.users.email : schema.users.phone,
       set: {
         phone: phone || null,
         prefLang,
