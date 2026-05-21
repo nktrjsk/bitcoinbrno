@@ -2,6 +2,8 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
+> **IMPORTANT:** Read [`AGENTS.md`](./AGENTS.md) before doing anything else. It contains critical instructions that take precedence over this file.
+
 ## Commands
 
 ```sh
