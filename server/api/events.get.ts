@@ -9,10 +9,10 @@ const ICS_URL = 'https://calendar.google.com/calendar/ical/58e5c38f2abe589f11b02
 
 export default defineEventHandler(async () => {
   const text = await $fetch<string>(ICS_URL, { responseType: 'text' })
-  return parseUpcomingEvents(text, 5)
+  return parseUpcomingEvents(text)
 })
 
-function parseUpcomingEvents(ics: string, limit: number): CalendarEvent[] {
+function parseUpcomingEvents(ics: string): CalendarEvent[] {
   const unfolded = ics.replace(/\r\n[ \t]/g, '').replace(/\r\n/g, '\n').replace(/\r/g, '\n')
   const lines = unfolded.split('\n')
 
@@ -45,9 +45,11 @@ function parseUpcomingEvents(ics: string, limit: number): CalendarEvent[] {
 
   const now = new Date()
   return events
-    .filter(e => new Date(e.start) >= now)
+    .filter(e => new Date(e.start) >= now && (
+  e.location?.toLowerCase().includes('brno') ||
+  e.title.toLowerCase().includes('brno')
+))
     .sort((a, b) => new Date(a.start).getTime() - new Date(b.start).getTime())
-    .slice(0, limit)
 }
 
 function parseICSDate(val: string): string {

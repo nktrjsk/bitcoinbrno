@@ -2,38 +2,41 @@
   <div class="pz">
 
     <!-- NAV -->
-    <nav class="pz-nav">
-      <div class="pz-wrap pz-nav-inner">
-        <a href="#top" class="pz-brand">
-          <img src="/bitcoinbrno.jpg" alt="Bitcoin Brno" style="height:36px;width:auto;border-radius:8px;">
+    <nav class="sticky top-0 z-30 border-b border-[var(--pz-rule)] [backdrop-filter:blur(18px)_saturate(140%)] [-webkit-backdrop-filter:blur(18px)_saturate(140%)]" style="background: color-mix(in srgb, var(--pz-bg) 85%, transparent)">
+      <div class="max-w-[1240px] mx-auto px-8 flex items-center justify-between gap-6 py-3.5">
+        <a href="#top" class="flex items-center gap-3 no-underline [font-family:var(--pz-font-display)] font-bold text-lg tracking-[-0.01em]">
+          <img src="/bitcoinbrno.jpg" alt="Bitcoin Brno" class="h-9 w-auto rounded-lg">
           <span>Pizza Day Brno</span>
         </a>
-        <div class="pz-nav-links">
-          <a href="#expect">{{ t.nav.what }}</a>
-          <a href="#schedule">{{ t.nav.schedule }}</a>
-          <a href="#getting">{{ t.nav.getting }}</a>
-          <a href="#faq">{{ t.nav.faq }}</a>
-          <a href="#signup">{{ t.nav.signup }}</a>
+        <div class="hidden md:flex gap-1">
+          <UButton href="#expect"   variant="link" color="neutral" size="sm">{{ t.nav.what }}</UButton>
+          <UButton href="#schedule" variant="link" color="neutral" size="sm">{{ t.nav.schedule }}</UButton>
+          <UButton href="#getting"  variant="link" color="neutral" size="sm">{{ t.nav.getting }}</UButton>
+          <UButton href="#faq"      variant="link" color="neutral" size="sm">{{ t.nav.faq }}</UButton>
+          <UButton href="#signup"   variant="link" color="neutral" size="sm">{{ t.nav.signup }}</UButton>
         </div>
-        <div class="pz-lang-toggle" role="tablist" aria-label="Language">
-          <button :data-on="lang === 'cs' ? '1' : '0'" @click="lang = 'cs'">CS</button>
-          <button :data-on="lang === 'en' ? '1' : '0'" @click="lang = 'en'">EN</button>
+        <!-- Lang toggle (hidden) -->
+        <div v-if="false" role="tablist" aria-label="Language" class="inline-flex border border-[var(--pz-rule)] rounded-full p-[3px] bg-[var(--pz-card)] [font-family:var(--pz-font-mono)] text-[11px] tracking-[0.08em]">
+          <button :class="['px-3 py-[5px] rounded-full cursor-pointer border-0 font-[inherit] tracking-[inherit] transition-[background,color]', lang === 'cs' ? 'bg-[var(--pz-ink)] text-[var(--pz-bg)]' : 'bg-transparent text-[var(--pz-muted)]']" @click="lang = 'cs'">CS</button>
+          <button :class="['px-3 py-[5px] rounded-full cursor-pointer border-0 font-[inherit] tracking-[inherit] transition-[background,color]', lang === 'en' ? 'bg-[var(--pz-ink)] text-[var(--pz-bg)]' : 'bg-transparent text-[var(--pz-muted)]']" @click="lang = 'en'">EN</button>
         </div>
       </div>
     </nav>
 
-    <!-- HERO: split layout + stickers from sticker layout -->
-    <header id="top" class="pz-hero pz-wrap" data-layout="split">
+    <!-- HERO (hidden) -->
+    <header v-if="false" id="top" class="relative max-w-[1240px] mx-auto px-8 overflow-hidden grid gap-[60px] items-center max-[900px]:grid-cols-1 max-[900px]:pb-[clamp(48px,6vw,80px)]" style="grid-template-columns: 1.3fr 1fr; padding-top: clamp(40px,5vw,64px); padding-bottom: clamp(80px,9vw,140px)">
+
       <!-- Kids badge -->
-      <div class="pz-kids-badge" :aria-label="`${t.hero.kidsBadge.line1} ${t.hero.kidsBadge.line2} — ${t.hero.kidsBadge.sub}`">
-        <svg viewBox="0 0 80 80" class="pz-kids-badge-ring" aria-hidden="true">
+      <div class="pz-kids-badge absolute top-6 right-6 w-[124px] h-[124px] flex items-center justify-center z-[5] pointer-events-none max-[900px]:w-[104px] max-[900px]:h-[104px] max-[900px]:top-4 max-[900px]:right-4" :aria-label="`${t.hero.kidsBadge.line1} ${t.hero.kidsBadge.line2} — ${t.hero.kidsBadge.sub}`">
+        <svg viewBox="0 0 80 80" class="pz-kids-badge-ring absolute inset-0 w-full h-full text-[var(--pz-ink)]" aria-hidden="true">
           <defs><path id="pz-kb-arc" d="M 40,40 m -32,0 a 32,32 0 1,1 64,0 a 32,32 0 1,1 -64,0" /></defs>
-          <text font-size="7.6" letter-spacing="1.4" font-family="var(--pz-font-mono)" fill="currentColor">
+          <text font-size="7.6" letter-spacing="1.4" :font-family="'var(--pz-font-mono)'" fill="currentColor">
             <textPath href="#pz-kb-arc" startOffset="0" textLength="201.06" lengthAdjust="spacing"> • {{ t.hero.kidsBadge.sub }} • {{ t.hero.kidsBadge.sub }} </textPath>
           </text>
         </svg>
-        <div class="pz-kids-badge-core">
-          <span class="pz-kids-badge-emoji" aria-hidden="true">
+        <div class="relative w-[92px] h-[92px] rounded-full bg-[var(--pz-accent)] text-white flex flex-col items-center justify-center gap-0.5 max-[900px]:w-[76px] max-[900px]:h-[76px]" style="box-shadow: 0 6px 18px color-mix(in srgb, var(--pz-accent) 35%, transparent)">
+          <div class="absolute inset-1 rounded-full border border-dashed border-white/50" />
+          <span class="flex -mt-0.5" aria-hidden="true">
             <svg viewBox="0 0 32 32" width="30" height="30">
               <circle cx="11" cy="13" r="5.5" fill="currentColor" />
               <circle cx="22" cy="16" r="3.8" fill="currentColor" />
@@ -42,247 +45,291 @@
               <circle cx="17.5" cy="24.5" r="1.4" fill="var(--pz-card)" />
             </svg>
           </span>
-          <span class="pz-kids-badge-text">
+          <span class="flex flex-col items-center [font-family:var(--pz-font-display)] font-bold text-[13px] leading-[1.05] tracking-[-0.01em] uppercase max-[900px]:text-[11px]">
             <strong>{{ t.hero.kidsBadge.line1 }}</strong>
             <strong>{{ t.hero.kidsBadge.line2 }}</strong>
           </span>
         </div>
       </div>
 
-      <!-- Stickers (split + sticker layout combined) -->
-      <span class="pz-sticker pz-sticker--1">{{ t.hero.stickers.free }}</span>
-      <span class="pz-sticker pz-sticker--2">{{ t.hero.stickers.curious }}</span>
-      <span class="pz-sticker pz-sticker--3">{{ t.hero.stickers.bitcoiners }}</span>
+      <!-- Stickers -->
+      <span class="pz-sticker pz-sticker--1 absolute [font-family:var(--pz-font-mono)] text-xs tracking-[0.06em] uppercase rounded-[14px] px-[18px] py-3.5 z-[2] shadow-[0_8px_24px_rgba(0,0,0,0.08)] border border-[var(--pz-rule)] bg-[var(--pz-card)]">{{ t.hero.stickers.free }}</span>
+      <span class="pz-sticker pz-sticker--2 absolute [font-family:var(--pz-font-mono)] text-xs tracking-[0.06em] uppercase rounded-[14px] px-[18px] py-3.5 z-[2] shadow-[0_8px_24px_rgba(0,0,0,0.08)] border border-[var(--pz-rule)] bg-[var(--pz-card)]">{{ t.hero.stickers.curious }}</span>
+      <span class="pz-sticker pz-sticker--3 absolute [font-family:var(--pz-font-mono)] text-xs tracking-[0.06em] uppercase rounded-[14px] px-[18px] py-3.5 z-[2] shadow-[0_8px_24px_rgba(0,0,0,0.08)] border border-[var(--pz-rule)] bg-[var(--pz-card)]">{{ t.hero.stickers.bitcoiners }}</span>
 
-      <!-- Left column -->
-      <div class="pz-hero-content">
-        <h1 class="pz-hero-title"><em>{{ t.hero.title[0] }}</em><br>{{ t.hero.title[1] }}</h1>
-        <p class="pz-hero-sub">{{ t.hero.sub }}</p>
-        <div class="pz-hero-meta">
-          <span class="pz-meta-pill">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9" /><path d="M12 7v5l3 2" stroke-linecap="round" /></svg>
+      <!-- Left: content -->
+      <div>
+        <h1 class="[font-family:var(--pz-font-display)] font-bold leading-[0.88] tracking-[-0.035em] m-0" style="font-size: clamp(56px, 8vw, 120px)">
+          <em class="not-italic text-[var(--pz-accent)]">{{ t.hero.title[0] }}</em><br>{{ t.hero.title[1] }}
+        </h1>
+        <p class="mt-7 text-[var(--pz-ink-soft)] max-w-[52ch] leading-[1.4] m-0" style="font-size: clamp(18px, 2vw, 24px)">{{ t.hero.sub }}</p>
+        <div class="mt-11 flex flex-wrap gap-3.5">
+          <span class="inline-flex items-center gap-2.5 px-4 py-2.5 bg-[var(--pz-card)] border border-[var(--pz-rule)] rounded-full [font-family:var(--pz-font-mono)] text-[13px] tracking-[0.02em]">
+            <svg class="w-4 h-4 opacity-70 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9" /><path d="M12 7v5l3 2" stroke-linecap="round" /></svg>
             {{ t.hero.time }}
           </span>
-          <span class="pz-meta-pill">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s7-7.5 7-13a7 7 0 1 0-14 0c0 5.5 7 13 7 13z" /><circle cx="12" cy="9" r="2.5" /></svg>
+          <span class="inline-flex items-center gap-2.5 px-4 py-2.5 bg-[var(--pz-card)] border border-[var(--pz-rule)] rounded-full [font-family:var(--pz-font-mono)] text-[13px] tracking-[0.02em]">
+            <svg class="w-4 h-4 opacity-70 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s7-7.5 7-13a7 7 0 1 0-14 0c0 5.5 7 13 7 13z" /><circle cx="12" cy="9" r="2.5" /></svg>
             {{ t.hero.place }}
           </span>
         </div>
-        <div class="pz-hero-actions">
-          <a href="#signup" class="pz-btn pz-btn-primary">{{ t.hero.cta }}</a>
-          <a href="#schedule" class="pz-btn pz-btn-ghost">{{ t.hero.cta2 }} →</a>
+        <div class="mt-10 flex flex-wrap gap-3 items-center">
+          <UButton href="#signup" color="primary" size="lg">{{ t.hero.cta }}</UButton>
+          <UButton href="#schedule" variant="outline" color="neutral" size="lg">{{ t.hero.cta2 }} →</UButton>
         </div>
       </div>
 
-      <!-- Right column: hero mark -->
-      <div class="pz-hero-mark-wrap">
-        <img src="/bitcoinbrno.jpg" alt="Bitcoin Brno" class="pz-hero-mark" style="object-fit:cover;border-radius:8px;">
+      <!-- Right: mark -->
+      <div class="flex justify-center items-center">
+        <img src="/bitcoinbrno.jpg" alt="Bitcoin Brno" class="w-full max-w-[440px] h-auto object-cover rounded-lg max-[900px]:max-w-[280px]">
       </div>
     </header>
 
-    <!-- EXPECT CARDS — lift up to overlap hero edge -->
-    <section id="expect" class="pz-section pz-expect">
-      <div class="pz-wrap">
-        <div class="pz-expect-grid">
-          <article v-for="card in t.expect.cards" :key="card.n" class="pz-expect-card">
-            <h3>{{ card.title }}</h3>
-            <p>{{ card.body }}</p>
-            <span class="pz-badge">{{ card.badge }}</span>
+    <!-- EVENTS -->
+    <section id="top" class="max-w-[1240px] mx-auto px-8 py-[clamp(48px,6vw,80px)]">
+      <h2 class="[font-family:var(--pz-font-display)] text-[clamp(28px,4vw,42px)] font-bold tracking-[-0.02em] m-0 mb-8">Nadcházející akce v Brně</h2>
+      <div v-if="events && events.length" class="flex flex-col gap-4">
+        <a
+          v-for="ev in events"
+          :key="ev.start + ev.title"
+          class="group flex gap-6 items-start p-6 bg-[var(--pz-card)] border border-[var(--pz-rule)] rounded-[18px] no-underline hover:-translate-y-0.5 hover:shadow-[0_14px_32px_rgba(0,0,0,0.09)] transition-[transform,box-shadow]"
+        >
+          <!-- Date block -->
+          <div class="shrink-0 flex flex-col items-center justify-center w-14 h-14 rounded-xl bg-[var(--pz-accent)] text-white [font-family:var(--pz-font-mono)]">
+            <span class="text-[11px] uppercase tracking-[0.08em] opacity-80 leading-none">{{ new Date(ev.start).toLocaleDateString('cs-CZ', { month: 'short' }) }}</span>
+            <span class="text-[22px] font-bold leading-none mt-0.5">{{ new Date(ev.start).getDate() }}</span>
+          </div>
+          <!-- Details -->
+          <div class="flex-1 min-w-0">
+            <p class="m-0 [font-family:var(--pz-font-display)] text-[19px] font-semibold tracking-[-0.01em] leading-snug">{{ ev.title }}</p>
+            <div class="mt-1.5 flex flex-wrap gap-x-4 gap-y-1 text-[var(--pz-muted)] [font-family:var(--pz-font-mono)] text-[13px]">
+              <span v-if="ev.start.includes('T')">
+                {{ new Date(ev.start).toLocaleTimeString('cs-CZ', { hour: '2-digit', minute: '2-digit' }) }}
+                <template v-if="ev.end && ev.end.includes('T')"> – {{ new Date(ev.end).toLocaleTimeString('cs-CZ', { hour: '2-digit', minute: '2-digit' }) }}</template>
+              </span>
+              <span v-if="ev.location">{{ ev.location }}</span>
+            </div>
+          </div>
+        </a>
+      </div>
+      <p v-else class="text-[var(--pz-muted)] [font-family:var(--pz-font-mono)]">Žádné nadcházející akce.</p>
+    </section>
+
+    <!-- EXPECT CARDS (hidden) -->
+    <section v-if="false" id="expect" class="relative z-[2] pb-[clamp(72px,9vw,128px)]">
+      <div class="max-w-[1240px] mx-auto px-8">
+        <div class="grid gap-4" style="grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); margin-top: clamp(-110px, -7vw, -70px)">
+          <article v-for="card in t.expect.cards" :key="card.n" class="relative p-7 bg-[var(--pz-card)] border border-[var(--pz-rule)] rounded-[18px] flex flex-col gap-3 shadow-[0_6px_18px_rgba(0,0,0,0.04)] hover:-translate-y-0.5 hover:shadow-[0_14px_32px_rgba(0,0,0,0.09)] transition-[transform,box-shadow]">
+            <h3 class="[font-family:var(--pz-font-display)] text-[26px] font-semibold tracking-[-0.015em] leading-[1.05] m-0">{{ card.title }}</h3>
+            <p class="m-0 text-[var(--pz-ink-soft)] text-[15.5px] leading-[1.5]">{{ card.body }}</p>
+            <UBadge variant="soft" color="primary" class="self-start mt-1 [font-family:var(--pz-font-mono)] tracking-[0.06em] uppercase">{{ card.badge }}</UBadge>
           </article>
         </div>
       </div>
     </section>
 
-    <!-- SCHEDULE -->
-    <section id="schedule" class="pz-section pz-section--tint">
-      <div class="pz-wrap">
-        <div class="pz-section-head">
-          <span class="pz-eyebrow">{{ t.schedule.eyebrow }}</span>
-          <h2 class="pz-h-section">{{ t.schedule.head }}</h2>
-          <p class="pz-lede">{{ t.schedule.lede }}</p>
+    <!-- SCHEDULE (hidden) -->
+    <section v-if="false" id="schedule" class="py-[clamp(72px,9vw,128px)] border-t border-[var(--pz-rule)] bg-[var(--pz-bg-tint)]">
+      <div class="max-w-[1240px] mx-auto px-8">
+        <div class="grid gap-4 mb-[clamp(36px,5vw,64px)] max-w-[760px]">
+          <span class="[font-family:var(--pz-font-mono)] text-[12px] tracking-[0.14em] uppercase text-[var(--pz-muted)]">{{ t.schedule.eyebrow }}</span>
+          <h2 class="[font-family:var(--pz-font-display)] font-semibold tracking-[-0.02em] leading-[1.02] m-0 text-balance" style="font-size: clamp(28px,4.4vw,52px)">{{ t.schedule.head }}</h2>
+          <p class="text-[var(--pz-ink-soft)] max-w-[56ch] m-0" style="font-size: clamp(17px,1.6vw,21px)">{{ t.schedule.lede }}</p>
         </div>
-        <div class="pz-schedule">
-          <div v-for="row in t.schedule.rows" :key="row.t" class="pz-sched-row">
-            <span class="pz-sched-t">{{ row.t }}</span>
-            <span class="pz-sched-title">{{ row.title }}<small>{{ row.sub }}</small></span>
-            <span class="pz-sched-tag">{{ row.tag }}</span>
+        <div class="max-w-[880px] border-t border-[var(--pz-rule)]">
+          <div v-for="row in t.schedule.rows" :key="row.t" class="grid gap-6 py-5 px-1 border-b border-[var(--pz-rule)] items-baseline hover:bg-[color-mix(in_srgb,var(--pz-accent-soft)_30%,transparent)] transition-colors max-sm:grid-cols-1 max-sm:gap-1 max-sm:py-4" style="grid-template-columns: 110px 1fr auto">
+            <span class="[font-family:var(--pz-font-mono)] text-[17px] font-medium text-[var(--pz-accent-deep)] tabular-nums">{{ row.t }}</span>
+            <span class="[font-family:var(--pz-font-display)] text-[21px] font-semibold tracking-[-0.01em] leading-snug">
+              {{ row.title }}
+              <small class="block [font-family:var(--pz-font-body)] text-[14.5px] font-normal text-[var(--pz-muted)] mt-1 tracking-normal">{{ row.sub }}</small>
+            </span>
+            <span class="[font-family:var(--pz-font-mono)] text-[11px] tracking-[0.08em] uppercase text-[var(--pz-muted)] whitespace-nowrap max-sm:order-first">{{ row.tag }}</span>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- BRING / PROVIDE -->
-    <section id="bring" class="pz-section">
-      <div class="pz-wrap">
-        <div class="pz-section-head">
-          <span class="pz-eyebrow">{{ t.bring.eyebrow }}</span>
-          <h2 class="pz-h-section">{{ t.bring.head }}</h2>
-          <p class="pz-lede">{{ t.bring.lede }}</p>
+    <!-- BRING (hidden) -->
+    <section v-if="false" id="bring" class="py-[clamp(72px,9vw,128px)] border-t border-[var(--pz-rule)]">
+      <div class="max-w-[1240px] mx-auto px-8">
+        <div class="grid gap-4 mb-[clamp(36px,5vw,64px)] max-w-[760px]">
+          <span class="[font-family:var(--pz-font-mono)] text-[12px] tracking-[0.14em] uppercase text-[var(--pz-muted)]">{{ t.bring.eyebrow }}</span>
+          <h2 class="[font-family:var(--pz-font-display)] font-semibold tracking-[-0.02em] leading-[1.02] m-0 text-balance" style="font-size: clamp(28px,4.4vw,52px)">{{ t.bring.head }}</h2>
+          <p class="text-[var(--pz-ink-soft)] max-w-[56ch] m-0" style="font-size: clamp(17px,1.6vw,21px)">{{ t.bring.lede }}</p>
         </div>
-        <div class="pz-bring-split">
-          <div class="pz-bring-col">
-            <span class="pz-eyebrow">01</span>
-            <h3>{{ t.bring.we.title }}</h3>
-            <ul class="pz-bring-list">
-              <li v-for="(item, i) in t.bring.we.items" :key="i">{{ item }}</li>
+        <div class="grid border border-[var(--pz-rule)] rounded-3xl overflow-hidden bg-[var(--pz-card)] max-[720px]:grid-cols-1" style="grid-template-columns: 1fr 1fr">
+          <div class="p-9">
+            <span class="[font-family:var(--pz-font-mono)] text-[12px] tracking-[0.14em] uppercase text-[var(--pz-muted)]">01</span>
+            <h3 class="[font-family:var(--pz-font-display)] text-[22px] font-semibold tracking-[-0.01em] m-0 mt-1 mb-1">{{ t.bring.we.title }}</h3>
+            <ul class="list-none p-0 m-0 mt-4 flex flex-col gap-2.5">
+              <li v-for="(item, i) in t.bring.we.items" :key="i" class="flex items-start gap-3.5 text-base leading-snug">
+                <span class="shrink-0 mt-1 w-2.5 h-2.5 rounded-full bg-[var(--pz-accent)]" aria-hidden="true" />
+                {{ item }}
+              </li>
             </ul>
           </div>
-          <div class="pz-bring-col pz-bring-col--you">
-            <span class="pz-eyebrow">02</span>
-            <h3>{{ t.bring.you.title }}</h3>
-            <ul class="pz-bring-list">
-              <li v-for="(item, i) in t.bring.you.items" :key="i">{{ item }}</li>
+          <div class="p-9 bg-[var(--pz-bg-tint)] max-[720px]:border-t" style="border-left: 1px solid var(--pz-rule)">
+            <span class="[font-family:var(--pz-font-mono)] text-[12px] tracking-[0.14em] uppercase text-[var(--pz-muted)]">02</span>
+            <h3 class="[font-family:var(--pz-font-display)] text-[22px] font-semibold tracking-[-0.01em] m-0 mt-1 mb-1">{{ t.bring.you.title }}</h3>
+            <ul class="list-none p-0 m-0 mt-4 flex flex-col gap-2.5">
+              <li v-for="(item, i) in t.bring.you.items" :key="i" class="flex items-start gap-3.5 text-base leading-snug">
+                <span class="shrink-0 mt-1 w-2.5 h-2.5 rounded-full bg-[var(--pz-secondary)]" aria-hidden="true" />
+                {{ item }}
+              </li>
             </ul>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- GETTING THERE -->
-    <section id="getting" class="pz-section pz-section--tint">
-      <div class="pz-wrap">
-        <div class="pz-section-head">
-          <span class="pz-eyebrow">{{ t.getting.eyebrow }}</span>
-          <h2 class="pz-h-section">{{ t.getting.head }}</h2>
-          <p class="pz-lede" v-html="t.getting.lede" />
+    <!-- GETTING THERE (hidden) -->
+    <section v-if="false" id="getting" class="py-[clamp(72px,9vw,128px)] border-t border-[var(--pz-rule)] bg-[var(--pz-bg-tint)]">
+      <div class="max-w-[1240px] mx-auto px-8">
+        <div class="grid gap-4 mb-[clamp(36px,5vw,64px)] max-w-[760px]">
+          <span class="[font-family:var(--pz-font-mono)] text-[12px] tracking-[0.14em] uppercase text-[var(--pz-muted)]">{{ t.getting.eyebrow }}</span>
+          <h2 class="[font-family:var(--pz-font-display)] font-semibold tracking-[-0.02em] leading-[1.02] m-0 text-balance" style="font-size: clamp(28px,4.4vw,52px)">{{ t.getting.head }}</h2>
+          <p class="text-[var(--pz-ink-soft)] max-w-[56ch] m-0" style="font-size: clamp(17px,1.6vw,21px)" v-html="t.getting.lede" />
         </div>
-        <div class="pz-getting">
-          <div class="pz-transit-list">
-            <div v-for="(row, i) in t.getting.rows" :key="i" class="pz-transit-row">
-              <span class="pz-transit-ico">
-                <svg viewBox="0 0 24 24" v-html="transitIcons[row.ico]" />
+        <div class="grid gap-10 items-start max-[900px]:grid-cols-1" style="grid-template-columns: 1.1fr 1fr">
+          <div class="flex flex-col gap-4">
+            <div v-for="(row, i) in t.getting.rows" :key="i" class="grid gap-4 items-start py-4 border-b border-[var(--pz-rule)] last:border-0" style="grid-template-columns: 44px 1fr">
+              <span class="w-9 h-9 flex items-center justify-center rounded-[10px] bg-[var(--pz-bg)] text-[var(--pz-accent-deep)]">
+                <svg class="w-[22px] h-[22px]" viewBox="0 0 24 24" v-html="transitIcons[row.ico]" />
               </span>
               <div>
-                <h4>{{ row.title }}</h4>
-                <p v-html="row.body.replace(/<em>/g, '<span class=\'pz-line\'>').replace(/<\/em>/g, '</span>')" />
+                <h4 class="m-0 mb-1 [font-family:var(--pz-font-display)] text-[18px] font-semibold tracking-[-0.005em]">{{ row.title }}</h4>
+                <p class="m-0 text-[var(--pz-ink-soft)] text-[15px] leading-relaxed" v-html="row.body.replace(/<em>/g, '<span class=\'pz-line\'>').replace(/<\/em>/g, '</span>')" />
               </div>
             </div>
           </div>
-          <aside class="pz-map-card">
-            <div class="pz-map-stage">
+          <aside class="bg-[var(--pz-card)] border border-[var(--pz-rule)] rounded-[20px] overflow-hidden sticky top-[100px] max-[900px]:static">
+            <div class="relative aspect-[4/3] border-b border-[var(--pz-rule)] overflow-hidden">
               <PizzaDayMap />
             </div>
-            <div class="pz-map-meta">
-              <span class="pz-map-name">{{ t.getting.park.name }}</span>
-              <span class="pz-map-coord">{{ t.getting.park.coord }}</span>
+            <div class="px-[22px] py-4 flex justify-between gap-4 items-center">
+              <span class="[font-family:var(--pz-font-display)] font-semibold text-[17px]">{{ t.getting.park.name }}</span>
+              <span class="[font-family:var(--pz-font-mono)] text-[12px] text-[var(--pz-muted)]">{{ t.getting.park.coord }}</span>
             </div>
           </aside>
         </div>
       </div>
     </section>
 
-    <!-- FAQ -->
-    <section id="faq" class="pz-section">
-      <div class="pz-wrap">
-        <div class="pz-section-head">
-          <span class="pz-eyebrow">{{ t.faq.eyebrow }}</span>
-          <h2 class="pz-h-section">{{ t.faq.head }}</h2>
-          <p class="pz-lede">{{ t.faq.lede }}</p>
+    <!-- FAQ (hidden) -->
+    <section v-if="false" id="faq" class="py-[clamp(72px,9vw,128px)] border-t border-[var(--pz-rule)]">
+      <div class="max-w-[1240px] mx-auto px-8">
+        <div class="grid gap-4 mb-[clamp(36px,5vw,64px)] max-w-[760px]">
+          <span class="[font-family:var(--pz-font-mono)] text-[12px] tracking-[0.14em] uppercase text-[var(--pz-muted)]">{{ t.faq.eyebrow }}</span>
+          <h2 class="[font-family:var(--pz-font-display)] font-semibold tracking-[-0.02em] leading-[1.02] m-0 text-balance" style="font-size: clamp(28px,4.4vw,52px)">{{ t.faq.head }}</h2>
+          <p class="text-[var(--pz-ink-soft)] max-w-[56ch] m-0" style="font-size: clamp(17px,1.6vw,21px)">{{ t.faq.lede }}</p>
         </div>
-        <div class="pz-faq" :key="lang">
-          <details v-for="(row, i) in t.faq.rows" :key="i" class="pz-faq-row" :open="i === 0">
-            <summary>
-              <span class="pz-q-num">{{ String(i + 1).padStart(2, '0') }}</span>
-              <span class="pz-q-text">{{ row.q }}</span>
-              <span class="pz-q-toggle" aria-hidden="true" />
-            </summary>
-            <div class="pz-faq-a">{{ row.a }}</div>
-          </details>
-        </div>
+        <UAccordion :key="lang" :items="faqItems" default-value="0" class="max-w-[880px]" />
       </div>
     </section>
 
-    <!-- ORGANIZERS -->
-    <section id="org" class="pz-section pz-section--tint">
-      <div class="pz-wrap">
-        <div class="pz-section-head">
-          <span class="pz-eyebrow">{{ t.org.eyebrow }}</span>
-          <h2 class="pz-h-section">{{ t.org.head }}</h2>
+    <!-- ORGANIZERS (hidden) -->
+    <section v-if="false" id="org" class="py-[clamp(72px,9vw,128px)] border-t border-[var(--pz-rule)] bg-[var(--pz-bg-tint)]">
+      <div class="max-w-[1240px] mx-auto px-8">
+        <div class="grid gap-4 mb-[clamp(36px,5vw,64px)] max-w-[760px]">
+          <span class="[font-family:var(--pz-font-mono)] text-[12px] tracking-[0.14em] uppercase text-[var(--pz-muted)]">{{ t.org.eyebrow }}</span>
+          <h2 class="[font-family:var(--pz-font-display)] font-semibold tracking-[-0.02em] leading-[1.02] m-0 text-balance" style="font-size: clamp(28px,4.4vw,52px)">{{ t.org.head }}</h2>
         </div>
-        <div class="pz-org-card">
-          <div class="pz-org-text">
-            <h3>{{ t.org.cta }}</h3>
-            <p>{{ t.org.lede }}</p>
-            <div class="pz-org-links">
-              <a v-for="link in t.org.links" :key="link.label" :href="link.href" target="_blank" rel="noopener" class="pz-org-link">
-                {{ link.label }}
-              </a>
+        <div class="grid border border-[var(--pz-rule)] rounded-3xl overflow-hidden bg-[var(--pz-card)] max-[760px]:grid-cols-1" style="grid-template-columns: 1fr 1fr">
+          <div class="p-10">
+            <h3 class="[font-family:var(--pz-font-display)] font-semibold tracking-[-0.015em] leading-[1.05] m-0 mt-2 mb-4" style="font-size: clamp(26px,3vw,36px)">{{ t.org.cta }}</h3>
+            <p class="m-0 mb-4 text-[var(--pz-ink-soft)] text-[16.5px] leading-relaxed">{{ t.org.lede }}</p>
+            <div class="flex flex-wrap gap-2.5 mt-5">
+              <UButton v-for="link in t.org.links" :key="link.label" :href="link.href" target="_blank" rel="noopener" variant="outline" color="neutral" size="sm">{{ link.label }}</UButton>
             </div>
           </div>
-          <div class="pz-org-art">
-            <img src="/jednadvacetbrno.jpg" alt="Jednadvacet Brno community" class="pz-org-photo" />
+          <div class="bg-[var(--pz-bg-tint)] relative min-h-[280px] overflow-hidden max-[760px]:min-h-[200px]">
+            <img src="/jednadvacetbrno.jpg" alt="Jednadvacet Brno community" class="w-full h-full object-cover block" />
           </div>
         </div>
       </div>
     </section>
 
     <!-- SIGNUP SECTION -->
-    <section id="signup" class="pz-section">
-      <div class="pz-wrap">
-        <div class="pz-signup">
-          <div class="pz-signup-head">
-            <span class="pz-signup-eyebrow">{{ t.signup.eyebrow }}</span>
-            <h3>
-              {{ t.signup.head.split(t.signup.headAccent)[0] }}<span class="pz-signup-accent">{{ t.signup.headAccent }}</span>{{ t.signup.head.split(t.signup.headAccent)[1] }}
+    <section id="signup" class="py-[clamp(72px,9vw,128px)] border-t border-[var(--pz-rule)]">
+      <div class="max-w-[1240px] mx-auto px-8">
+        <div class="pz-signup relative bg-[var(--pz-ink)] text-[var(--pz-bg)] rounded-[28px] grid gap-12 items-center overflow-hidden max-[820px]:grid-cols-1" style="padding: clamp(40px,5vw,64px); grid-template-columns: 1.1fr 1fr">
+          <!-- Head -->
+          <div>
+            <span class="[font-family:var(--pz-font-mono)] text-[12px] tracking-[0.14em] uppercase block mb-3" style="color: color-mix(in srgb, var(--pz-bg) 60%, transparent)">{{ t.signup.eyebrow }}</span>
+            <h3 class="[font-family:var(--pz-font-display)] font-bold tracking-[-0.025em] leading-none m-0 mb-3.5 text-balance" style="font-size: clamp(30px,3.6vw,48px)">
+              {{ t.signup.head.split(t.signup.headAccent)[0] }}<span class="text-[var(--pz-accent)]">{{ t.signup.headAccent }}</span>{{ t.signup.head.split(t.signup.headAccent)[1] }}
             </h3>
-            <p>{{ t.signup.lede }}</p>
+            <p class="m-0 text-[16.5px] leading-relaxed max-w-[36ch]" style="color: color-mix(in srgb, var(--pz-bg) 75%, transparent)">{{ t.signup.lede }}</p>
           </div>
-          <div v-if="emailDone" class="pz-signup-success">
-            <h4>{{ t.signup.success }}</h4>
-            <p>{{ t.signup.successSub }}</p>
+
+          <!-- Success -->
+          <div v-if="emailDone" class="p-8 rounded-[18px]" style="background: color-mix(in srgb, var(--pz-bg) 10%, transparent); border: 1px solid color-mix(in srgb, var(--pz-bg) 18%, transparent)">
+            <h4 class="[font-family:var(--pz-font-display)] text-[22px] font-semibold m-0 mb-2">{{ t.signup.success }}</h4>
+            <p class="m-0 text-[15px]" style="color: color-mix(in srgb, var(--pz-bg) 75%, transparent)">{{ t.signup.successSub }}</p>
           </div>
-          <form v-else class="pz-signup-form" @submit.prevent="submitSignup">
-            <div class="pz-input-group">
-              <label for="pz-email">{{ t.signup.emailLabel }}</label>
-              <input id="pz-email" type="email" :placeholder="t.signup.emailPh" v-model="email" />
+
+          <!-- Form -->
+          <form v-else class="relative z-[1] flex flex-col gap-3" @submit.prevent="submitSignup">
+            <div class="flex flex-col gap-1.5">
+              <label for="pz-email" class="[font-family:var(--pz-font-mono)] text-[11px] tracking-[0.1em] uppercase" style="color: color-mix(in srgb, var(--pz-bg) 60%, transparent)">{{ t.signup.emailLabel }}</label>
+              <UInput id="pz-email" v-model="email" type="email" :placeholder="t.signup.emailPh" color="primary" />
             </div>
-            <div class="pz-signup-or">a/nebo</div>
-            <div class="pz-input-group">
-              <label for="pz-phone">{{ t.signup.phoneLabel }}</label>
-              <input id="pz-phone" type="tel" :placeholder="t.signup.phonePh" v-model="phone" />
-              <span v-if="!email.trim() && !phone.trim()" class="pz-input-hint">{{ t.signup.contactHint }}</span>
+
+            <div class="flex items-center gap-3 my-1 [font-family:var(--pz-font-mono)] text-[13px] tracking-[0.08em] uppercase opacity-60" style="--line-color: currentColor">
+              <span class="flex-1 h-px opacity-30" style="background: currentColor" />
+              a/nebo
+              <span class="flex-1 h-px opacity-30" style="background: currentColor" />
             </div>
-            <div class="pz-input-group">
-              <label>{{ t.signup.langLabel }}</label>
-              <div class="pz-lang-radio">
-                <button type="button" :data-on="prefLang === 'cs' ? '1' : '0'" @click="prefLang = 'cs'">Česky</button>
-                <button type="button" :data-on="prefLang === 'en' ? '1' : '0'" @click="prefLang = 'en'">English</button>
+
+            <div class="flex flex-col gap-1.5">
+              <label for="pz-phone" class="[font-family:var(--pz-font-mono)] text-[11px] tracking-[0.1em] uppercase" style="color: color-mix(in srgb, var(--pz-bg) 60%, transparent)">{{ t.signup.phoneLabel }}</label>
+              <UInput id="pz-phone" v-model="phone" type="tel" :placeholder="t.signup.phonePh" color="primary" />
+              <span v-if="!email.trim() && !phone.trim()" class="text-[12.5px] opacity-55">{{ t.signup.contactHint }}</span>
+            </div>
+
+            <div class="flex flex-col gap-1.5">
+              <label class="[font-family:var(--pz-font-mono)] text-[11px] tracking-[0.1em] uppercase" style="color: color-mix(in srgb, var(--pz-bg) 60%, transparent)">{{ t.signup.langLabel }}</label>
+              <div class="flex gap-2 p-1 rounded-xl" style="background: color-mix(in srgb, var(--pz-bg) 8%, transparent); border: 1px solid color-mix(in srgb, var(--pz-bg) 16%, transparent)">
+                <UButton type="button" :color="prefLang === 'cs' ? 'primary' : 'neutral'" :variant="prefLang === 'cs' ? 'solid' : 'ghost'" class="flex-1" @click="prefLang = 'cs'">Česky</UButton>
+                <UButton type="button" :color="prefLang === 'en' ? 'primary' : 'neutral'" :variant="prefLang === 'en' ? 'solid' : 'ghost'" class="flex-1" @click="prefLang = 'en'">English</UButton>
               </div>
             </div>
-            <p v-if="signupError" class="pz-signup-error">{{ signupError }}</p>
-            <button type="submit" class="pz-signup-submit" :disabled="!email.trim() && !phone.trim()">{{ t.signup.submit }}</button>
-            <p class="pz-signup-fine">{{ t.signup.fine }}</p>
+
+            <p v-if="signupError" class="m-0 mb-1 text-[13px] text-red-400">{{ signupError }}</p>
+
+            <UButton type="submit" color="primary" block size="lg" :disabled="!email.trim() && !phone.trim()" class="mt-2">{{ t.signup.submit }}</UButton>
+            <p class="m-0 mt-1.5 text-[12.5px] leading-relaxed" style="color: color-mix(in srgb, var(--pz-bg) 50%, transparent)">{{ t.signup.fine }}</p>
           </form>
         </div>
       </div>
     </section>
 
     <!-- FOOTER -->
-    <footer class="pz-footer">
-      <div class="pz-wrap pz-footer-inner">
-        <div class="pz-brand">
-          <img src="/bitcoinbrno.jpg" alt="Bitcoin Brno" style="height:28px;width:auto;border-radius:8px;">
+    <footer class="py-12 border-t border-[var(--pz-rule)] text-[13.5px] text-[var(--pz-muted)]">
+      <div class="max-w-[1240px] mx-auto px-8 flex justify-between gap-6 flex-wrap items-baseline">
+        <a href="#top" class="flex items-center gap-3 [font-family:var(--pz-font-display)] font-bold text-[15px] no-underline text-[var(--pz-ink)]">
+          <img src="/bitcoinbrno.jpg" alt="Bitcoin Brno" class="h-7 w-auto rounded-lg">
           <span>{{ t.footer.rights }}</span>
-        </div>
-        <div class="pz-footer-links">
-          <a v-for="link in t.footer.links" :key="link.label" :href="link.href">{{ link.label }}</a>
+        </a>
+        <div class="flex gap-2">
+          <UButton v-for="link in t.footer.links" :key="link.label" :href="link.href" variant="link" color="neutral" size="sm">{{ link.label }}</UButton>
         </div>
       </div>
     </footer>
 
-    <!-- SIGNUP FAB — "both" placement: section above + FAB here -->
-    <div v-if="!fabDismissed" class="pz-signup-fab">
-      <button type="button" class="pz-fab-close" @click="fabDismissed = true" aria-label="Dismiss">✕</button>
-      <button type="button" class="pz-fab-main" @click="goToSignup" :aria-label="t.fab.label">
-        <span class="pz-fab-pulse" aria-hidden="true" />
-        <span class="pz-fab-icon" aria-hidden="true">
+    <!-- FAB -->
+    <div v-if="!fabDismissed" class="pz-signup-fab fixed bottom-[22px] right-[22px] z-[25] flex items-start gap-1.5 max-[720px]:bottom-4 max-[720px]:right-4">
+      <button type="button" class="pz-fab-close w-7 h-7 rounded-full border-0 bg-[var(--pz-card)] text-[var(--pz-muted)] text-[13px] leading-none cursor-pointer shadow-[0_2px_6px_rgba(0,0,0,0.12)] opacity-0 scale-[0.6] transition-[opacity,transform,color] mt-1.5 hover:text-[var(--pz-ink)] max-[720px]:opacity-100 max-[720px]:scale-100" @click="fabDismissed = true" aria-label="Dismiss">✕</button>
+      <button type="button" class="relative flex items-center h-16 pr-[22px] border-0 rounded-full bg-[var(--pz-accent)] text-white cursor-pointer overflow-hidden transition-[transform,box-shadow,background] hover:-translate-y-0.5 hover:bg-[var(--pz-accent-deep)] active:translate-y-0 max-[720px]:pr-0 max-[720px]:rounded-full" :aria-label="t.fab.label" style="box-shadow: 0 18px 40px color-mix(in srgb, var(--pz-accent) 35%, transparent), 0 4px 12px rgba(0,0,0,0.18)" @click="goToSignup">
+        <span class="pz-fab-pulse absolute inset-0 rounded-full bg-[var(--pz-accent)] -z-[1]" aria-hidden="true" />
+        <span class="flex items-center justify-center w-16 h-16 shrink-0" aria-hidden="true">
           <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M3 7l9 6 9-6" /><rect x="3" y="5" width="18" height="14" rx="2" />
           </svg>
         </span>
-        <span class="pz-fab-label">
-          <strong>{{ t.fab.label }}</strong>
-          <em>{{ t.fab.sub }}</em>
+        <span class="[font-family:var(--pz-font-body)] flex flex-col justify-center whitespace-nowrap text-left max-[720px]:hidden" aria-hidden="true">
+          <strong class="block text-[14px] font-bold leading-[1.1] tracking-[-0.005em]">{{ t.fab.label }}</strong>
+          <em class="block not-italic text-[12px] font-medium leading-[1.2] mt-0.5" style="color: color-mix(in srgb, #fff 75%, transparent)">{{ t.fab.sub }}</em>
         </span>
       </button>
     </div>
@@ -291,8 +338,6 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed } from 'vue'
-
 useHead({
   title: 'Pizza Day Brno 2026',
   link: [
@@ -304,6 +349,10 @@ useHead({
     },
   ],
 })
+
+import type { CalendarEvent } from '~/server/api/events.get'
+
+const { data: events } = await useFetch<CalendarEvent[]>('/api/events')
 
 const lang = ref<'cs' | 'en'>('cs')
 const fabDismissed = ref(false)
@@ -346,7 +395,7 @@ const transitIcons: Record<string, string> = {
 
 const copy = {
   cs: {
-    nav: { what: 'Co tě čeká', schedule: 'Program', getting: 'Jak se tam dostat', faq: 'Časté dotazy', signup: 'Newsletter' },
+    nav: { what: 'Co tě čeká', schedule: 'Program', getting: 'Jak se tam dostat', faq: 'Časté dotazy', signup: 'Přihlášení k notifikacím' },
     hero: {
       title: ['Pizza Day', 'v parku'],
       sub: 'Pizza, park a parta lidí, kteří ti rádi vysvětlí, co je Bitcoin — beze spěchu a bez žargonu. Přijď s rodinou, dětmi, i když se nezajímáš o bitcoin. Stačí mít hlad.',
@@ -362,7 +411,7 @@ const copy = {
         { n: '01', title: 'Pizza zdarma', badge: 'Do vyprodání', body: 'Objednáváme z místních pizzerií, dokud nám stačí finance. Bez registrace, bez front — prostě přijď.' },
         { n: '02', title: 'Bitcoin pro úplné začátečníky', badge: 'Beze spěchu', body: 'Nevíš nic? Skvělé. Najdeš tu lidi, kteří ti to vysvětlí lidsky, beze žargonu, a klidně dvakrát.' },
         { n: '03', title: 'Pomoc s peněženkou', badge: 'Vezmi telefon', body: 'Pomůžeme ti nastavit první peněženku a ukážeme, jak poslat platbu přes Lightning. Trvá to pět minut.' },
-        { n: '04', title: 'Merch & komunita', badge: 'Plať CZK nebo sats', body: 'Tričko, samolepky, propojení s místní komunitou. Výtěžek jde na další akce.' },
+        { n: '04', title: 'Merch & komunita', badge: 'Plať korunami nebo saty', body: 'Tričko, samolepky, propojení s místní komunitou. Výtěžek jde na další akce.' },
       ],
     },
     schedule: {
@@ -389,10 +438,10 @@ const copy = {
       head: 'Jak se tam dostat', eyebrow: 'Doprava',
       lede: 'Park leží kousek od centra. <b>Doporučujeme MHD nebo kolo</b>, parkování v okolí je omezené.',
       rows: [
-	{ ico: 'tram', title: 'Tramvají', body: 'Linky <em>1</em>, <em>6</em> · zastávka <b>Antonínská</b>. Odtud je to pár minut pěšky do parku.' },
-	{ ico: 'walk', title: 'Pěšky z centra', body: 'Z náměstí Svobody přibližně <b>20</b> minut, z Moravského náměstí <b>10</b> minut.' },
+        { ico: 'tram', title: 'Tramvají', body: 'Linky <em>1</em>, <em>6</em> · zastávka <b>Antonínská</b>. Odtud je to pár minut pěšky do parku.' },
+        { ico: 'walk', title: 'Pěšky z centra', body: 'Z náměstí Svobody přibližně <b>20</b> minut, z Moravského náměstí <b>10</b> minut.' },
         { ico: 'bike', title: 'Na kole', body: 'TBD' },
-	{ ico: 'car',  title: 'Autem', body: 'Parkování v okolí <b>omezené</b> (modrá zóna). V blízkosti je <b>Parkovací dům Rozmarýn</b>.' },
+        { ico: 'car',  title: 'Autem', body: 'Parkování v okolí <b>omezené</b> (modrá zóna). V blízkosti je <b>Parkovací dům Rozmarýn</b>.' },
       ],
       park: { name: 'Tyršův sad', coord: '49.2028° N · 16.6030° E' },
     },
@@ -405,7 +454,7 @@ const copy = {
         { q: 'Je akce vhodná pro děti?', a: 'Ano, je to rodinná akce. V parku je dětské hřiště (+ ještě něco?)' },
         { q: 'Co když bude pršet?', a: 'Pokud bude lehký déšť, schováme se pod stromy a stínovou plachtu. Pokud přijde bouřka, akci přesuneme — informace pošleme do newsletteru ráno před akcí.' },
         { q: 'Můžu platit Bitcoinem za merch?', a: 'Ano, přijímáme Lightning i hotovost (CZK). Karty bohužel ne — jsme v parku.' },
-	{ q: 'Musím se předem registrovat?', a: '<b>Ne.</b> Stačí přijít. Pokud se chceš dozvědět o dalších akcích, přihlas se k odběru novinek.' },
+        { q: 'Musím se předem registrovat?', a: 'Ne. Stačí přijít. Pokud se chceš dozvědět o dalších akcích, přihlas se k odběru novinek.' },
         { q: 'Mluví se česky, nebo anglicky?', a: 'Oboje. Většina bitcoinerů mluví česky i anglicky, najdeš lidi, se kterými si rozumíš.' },
       ],
     },
@@ -422,7 +471,7 @@ const copy = {
       ],
     },
     signup: {
-      head: 'Buď u dalších akcí', headAccent: 'dalších akcí', eyebrow: 'Newsletter',
+      head: 'Buď u dalších akcí', headAccent: 'dalších akcí', eyebrow: 'Pozvánky',
       lede: 'Maximálně jeden e-mail měsíčně. Pošleme upozornění před akcemi, případně změny v programu (déšť, posun času). Nespamujeme.',
       emailLabel: 'E-mail', emailPh: 'tvoje@adresa.cz',
       phoneLabel: 'Telefon / SMS', phonePh: '+420',
@@ -448,7 +497,7 @@ const copy = {
       place: 'Tyršův sad · meadow by the music pavilion',
       cta: 'Get the newsletter',
       cta2: "See what's on",
-      stickers: { free: 'Pizza on us', curious: 'Beginners welcome', park: 'In the park · under a tree' },
+      stickers: { free: 'Pizza on us', curious: 'Beginners welcome', bitcoiners: 'Park · under a tree' },
       kidsBadge: { line1: 'Family-', line2: 'friendly', sub: 'Kids welcome' },
     },
     expect: {
@@ -536,10 +585,18 @@ const copy = {
 }
 
 const t = computed(() => copy[lang.value])
+
+const faqItems = computed(() =>
+  t.value.faq.rows.map((row, i) => ({
+    label: row.q,
+    content: row.a,
+    value: String(i),
+  }))
+)
 </script>
 
 <style>
-/* ── Pizza Day Brno — orange/sunset palette ───────────────────────── */
+/* ── Pizza Day Brno — design tokens ──────────────────────────────── */
 .pz {
   --pz-font-display: 'Bricolage Grotesque', system-ui, sans-serif;
   --pz-font-body: 'Manrope', system-ui, sans-serif;
@@ -570,1163 +627,62 @@ const t = computed(() => copy[lang.value])
 .pz a { color: inherit; }
 .pz ::selection { background: var(--pz-accent); color: var(--pz-card); }
 
-/* ── Layout ─────────────────────────────────────────────────────── */
-.pz-wrap {
-  width: 100%;
-  max-width: 1240px;
-  margin: 0 auto;
-  padding: 0 32px;
-}
-
-.pz-section {
-  padding: clamp(72px, 9vw, 128px) 0;
-  border-top: 1px solid var(--pz-rule);
-}
-
-.pz-section--tint { background: var(--pz-bg-tint); }
-
-.pz-section-head {
-  display: grid;
-  gap: 16px;
-  margin-bottom: clamp(36px, 5vw, 64px);
-  max-width: 760px;
-}
-
-/* ── Typography ─────────────────────────────────────────────────── */
-.pz-h-section {
-  font-family: var(--pz-font-display);
-  font-weight: 600;
-  font-size: clamp(28px, 4.4vw, 52px);
-  letter-spacing: -0.02em;
-  line-height: 1.02;
-  margin: 0 0 8px;
-  text-wrap: balance;
-}
-
-.pz-eyebrow {
-  font-family: var(--pz-font-mono);
-  font-size: 12px;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--pz-muted);
-}
-
-.pz-lede {
-  font-size: clamp(17px, 1.6vw, 21px);
-  color: var(--pz-ink-soft);
-  max-width: 56ch;
-  text-wrap: pretty;
-  margin: 0;
-}
-
-/* ── Nav ──────────────────────────────────────────────────────── */
-.pz-nav {
-  position: sticky;
-  top: 0;
-  z-index: 30;
-  background: color-mix(in srgb, var(--pz-bg) 85%, transparent);
-  backdrop-filter: blur(18px) saturate(140%);
-  -webkit-backdrop-filter: blur(18px) saturate(140%);
-  border-bottom: 1px solid var(--pz-rule);
-}
-
-.pz-nav-inner {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 24px;
-  padding: 14px 32px;
-}
-
-.pz-brand {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  font-family: var(--pz-font-display);
-  font-weight: 700;
-  font-size: 18px;
-  letter-spacing: -0.01em;
-  text-decoration: none;
-}
-
-.pz-nav-links {
-  display: flex;
-  gap: 28px;
-  font-size: 14px;
-  color: var(--pz-ink-soft);
-}
-
-.pz-nav-links a {
-  text-decoration: none;
-  transition: color 0.15s;
-}
-
-.pz-nav-links a:hover { color: var(--pz-accent); }
-
-.pz-lang-toggle {
-  display: inline-flex;
-  border: 1px solid var(--pz-rule);
-  border-radius: 999px;
-  padding: 3px;
-  background: var(--pz-card);
-  font-family: var(--pz-font-mono);
-  font-size: 11px;
-  letter-spacing: 0.08em;
-}
-
-.pz-lang-toggle button {
-  appearance: none;
-  border: 0;
-  background: transparent;
-  color: var(--pz-muted);
-  padding: 5px 11px;
-  border-radius: 999px;
-  cursor: pointer;
-  font: inherit;
-  letter-spacing: inherit;
-  transition: background 0.15s, color 0.15s;
-}
-
-.pz-lang-toggle button[data-on="1"] {
-  background: var(--pz-ink);
-  color: var(--pz-bg);
-}
-
-@media (max-width: 760px) {
-  .pz-nav-links { display: none; }
-}
-
-/* ── Hero ─────────────────────────────────────────────────────── */
-.pz-hero {
-  position: relative;
-  padding: clamp(40px, 5vw, 64px) 32px clamp(80px, 9vw, 140px);
-  overflow: hidden;
-  display: grid;
-  grid-template-columns: 1.3fr 1fr;
-  gap: 60px;
-  align-items: center;
-}
-
-.pz-hero-title {
-  font-family: var(--pz-font-display);
-  font-weight: 700;
-  font-size: clamp(56px, 8vw, 120px);
-  letter-spacing: -0.035em;
-  line-height: 0.88;
-  margin: 0;
-}
-
-.pz-hero-title em {
-  font-style: normal;
-  color: var(--pz-accent);
-}
-
-.pz-hero-sub {
-  margin-top: 28px;
-  font-size: clamp(18px, 2vw, 24px);
-  color: var(--pz-ink-soft);
-  max-width: 52ch;
-  text-wrap: pretty;
-  line-height: 1.4;
-}
-
-.pz-hero-meta {
-  margin-top: 44px;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 14px;
-}
-
-.pz-meta-pill {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  padding: 10px 16px 10px 14px;
-  background: var(--pz-card);
-  border: 1px solid var(--pz-rule);
-  border-radius: 999px;
-  font-family: var(--pz-font-mono);
-  font-size: 13px;
-  letter-spacing: 0.02em;
-}
-
-.pz-meta-pill svg { width: 16px; height: 16px; flex-shrink: 0; opacity: 0.7; }
-
-.pz-hero-actions {
-  margin-top: 40px;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-  align-items: center;
-}
-
-.pz-btn {
-  appearance: none;
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  padding: 14px 22px;
-  border: 0;
-  border-radius: 999px;
-  background: var(--pz-ink);
-  color: var(--pz-bg);
-  font: 500 15px/1 var(--pz-font-body);
-  cursor: pointer;
-  text-decoration: none;
-  transition: transform 0.12s, background 0.15s;
-}
-
-.pz-btn:hover { transform: translateY(-1px); }
-
-.pz-btn-primary { background: var(--pz-accent); color: #fff; }
-.pz-btn-primary:hover { background: var(--pz-accent-deep); }
-
-.pz-btn-ghost {
-  background: transparent;
-  color: var(--pz-ink);
-  border: 1px solid var(--pz-rule);
-}
-
-.pz-btn-ghost:hover { background: var(--pz-card); }
-
-.pz-hero-mark-wrap {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.pz-hero-mark {
-  width: 100%;
-  max-width: 440px;
-  height: auto;
-}
-
-/* Stickers — positioned within the hero (position: relative) */
-.pz-sticker {
-  position: absolute;
-  background: var(--pz-card);
-  border: 1px solid var(--pz-rule);
-  border-radius: 14px;
-  padding: 14px 18px;
-  font-family: var(--pz-font-mono);
-  font-size: 12px;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  box-shadow: 0 8px 24px rgba(0,0,0,0.08);
-  z-index: 2;
-}
-
-.pz-sticker--1 {
-  top: 7%;
-  right: 34%;
-  background: var(--pz-accent);
-  color: #fff;
-  border-color: transparent;
-  transform: rotate(6deg);
-  font-size: 14px;
-  padding: 18px 22px;
-}
-
-.pz-sticker--2 {
-  top: 48%;
-  right: 26%;
-  transform: rotate(-4deg);
-}
-
-.pz-sticker--3 {
-  bottom: 20%;
-  right: 5%;
-  transform: rotate(5deg);
-}
-
-@media (max-width: 900px) {
-  .pz-hero {
-    grid-template-columns: 1fr;
-    padding-bottom: clamp(48px, 6vw, 80px);
-  }
-  .pz-hero-mark { max-width: 280px; }
-  .pz-sticker { display: none; }
-}
-
 /* ── Kids badge ───────────────────────────────────────────────── */
-.pz-kids-badge {
-  position: absolute;
-  top: 24px;
-  right: 24px;
-  width: 124px;
-  height: 124px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 5;
-  transform: rotate(8deg);
-  pointer-events: none;
-  animation: pzKidsBadgeIn 0.7s cubic-bezier(0.2, 1.4, 0.4, 1) 0.2s both;
-}
+.pz-kids-badge      { animation: pzKidsBadgeIn 0.7s cubic-bezier(0.2, 1.4, 0.4, 1) 0.2s both; transform: rotate(8deg); }
+.pz-kids-badge-ring { animation: pzKidsRingSpin 22s linear infinite; }
 
 @keyframes pzKidsBadgeIn {
   from { transform: rotate(-25deg) scale(0.3); opacity: 0; }
   to   { transform: rotate(8deg) scale(1); opacity: 1; }
 }
-
-.pz-kids-badge-ring {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  color: var(--pz-ink);
-  animation: pzKidsRingSpin 22s linear infinite;
-}
-
 @keyframes pzKidsRingSpin { to { transform: rotate(360deg); } }
 
-.pz-kids-badge-core {
-  position: relative;
-  width: 92px;
-  height: 92px;
-  border-radius: 50%;
-  background: var(--pz-accent);
-  color: #fff;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 2px;
-  box-shadow: 0 6px 18px color-mix(in srgb, var(--pz-accent) 35%, transparent);
-}
-
-.pz-kids-badge-core::before {
-  content: "";
-  position: absolute;
-  inset: 4px;
-  border-radius: 50%;
-  border: 1.5px dashed color-mix(in srgb, #fff 50%, transparent);
-}
-
-.pz-kids-badge-emoji {
-  display: flex;
-  margin-top: -2px;
-}
-
-.pz-kids-badge-text {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  font-family: var(--pz-font-display);
-  font-weight: 700;
-  font-size: 13px;
-  line-height: 1.05;
-  letter-spacing: -0.01em;
-  text-transform: uppercase;
-}
-
-@media (max-width: 900px) {
-  .pz-kids-badge { width: 104px; height: 104px; top: 16px; right: 16px; }
-  .pz-kids-badge-core { width: 76px; height: 76px; }
-  .pz-kids-badge-text { font-size: 11px; }
-}
-
 @media (prefers-reduced-motion: reduce) {
-  .pz-kids-badge { animation: none; }
+  .pz-kids-badge      { animation: none; transform: rotate(8deg); }
   .pz-kids-badge-ring { animation: none; }
 }
 
-/* ── Expect cards ─────────────────────────────────────────────── */
-.pz-expect {
-  border-top: 0;
-  padding-top: 0;
-  padding-bottom: clamp(72px, 9vw, 128px);
-  position: relative;
-  z-index: 2;
-}
+/* ── Sticker positions ────────────────────────────────────────── */
+.pz-sticker--1 { top: 7%;    right: 34%; background: var(--pz-accent); color: #fff; border-color: transparent; font-size: 14px; padding: 18px 22px; transform: rotate(6deg); }
+.pz-sticker--2 { top: 48%;   right: 26%; transform: rotate(-4deg); }
+.pz-sticker--3 { bottom: 20%;right: 5%;  transform: rotate(5deg); }
+@media (max-width: 900px) { .pz-sticker { display: none; } }
 
-.pz-expect .pz-expect-grid {
-  margin-top: clamp(-110px, -7vw, -70px);
-}
-
-.pz-expect-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 16px;
-}
-
-.pz-expect-card {
-  position: relative;
-  padding: 28px 26px 26px;
-  background: var(--pz-card);
-  border: 1px solid var(--pz-rule);
-  border-radius: 18px;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  box-shadow: 0 6px 18px rgba(0,0,0,0.04);
-  transition: transform 0.15s, box-shadow 0.15s;
-}
-
-.pz-expect-card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 14px 32px rgba(0,0,0,0.09);
-}
-
-.pz-expect-card h3 {
-  font-family: var(--pz-font-display);
-  font-size: 26px;
-  font-weight: 600;
-  letter-spacing: -0.015em;
-  line-height: 1.05;
-  margin: 0;
-}
-
-.pz-expect-card p {
-  margin: 0;
-  color: var(--pz-ink-soft);
-  font-size: 15.5px;
-  line-height: 1.5;
-}
-
-.pz-badge {
-  display: inline-flex;
-  align-self: flex-start;
-  margin-top: 4px;
-  padding: 4px 10px;
-  border-radius: 999px;
-  background: var(--pz-accent-soft);
-  color: var(--pz-accent-deep);
-  font-family: var(--pz-font-mono);
-  font-size: 11px;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-}
-
-/* ── Schedule ─────────────────────────────────────────────────── */
-.pz-schedule {
-  max-width: 880px;
-  border-top: 1px solid var(--pz-rule);
-}
-
-.pz-sched-row {
-  display: grid;
-  grid-template-columns: 110px 1fr auto;
-  align-items: baseline;
-  gap: 24px;
-  padding: 20px 4px;
-  border-bottom: 1px solid var(--pz-rule);
-  transition: background 0.12s;
-}
-
-.pz-sched-row:hover { background: color-mix(in srgb, var(--pz-accent-soft) 30%, transparent); }
-
-.pz-sched-t {
-  font-family: var(--pz-font-mono);
-  font-size: 17px;
-  font-weight: 500;
-  color: var(--pz-accent-deep);
-  font-variant-numeric: tabular-nums;
-}
-
-.pz-sched-title {
-  font-family: var(--pz-font-display);
-  font-size: 21px;
-  font-weight: 600;
-  letter-spacing: -0.01em;
-  line-height: 1.2;
-}
-
-.pz-sched-title small {
-  display: block;
-  font-family: var(--pz-font-body);
-  font-size: 14.5px;
-  font-weight: 400;
-  color: var(--pz-muted);
-  margin-top: 4px;
-  letter-spacing: 0;
-}
-
-.pz-sched-tag {
-  font-family: var(--pz-font-mono);
-  font-size: 11px;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--pz-muted);
-  white-space: nowrap;
-}
-
-@media (max-width: 640px) {
-  .pz-sched-row { grid-template-columns: 1fr; gap: 4px; padding: 16px 4px; }
-  .pz-sched-tag { order: -1; }
-}
-
-/* ── Bring ────────────────────────────────────────────────────── */
-.pz-bring-split {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  border: 1px solid var(--pz-rule);
-  border-radius: 24px;
-  overflow: hidden;
-  background: var(--pz-card);
-}
-
-.pz-bring-col { padding: 36px 36px 40px; }
-
-.pz-bring-col--you {
-  border-left: 1px solid var(--pz-rule);
-  background: var(--pz-bg-tint);
-}
-
-.pz-bring-col h3 {
-  font-family: var(--pz-font-display);
-  font-size: 22px;
-  font-weight: 600;
-  margin: 0 0 4px;
-  letter-spacing: -0.01em;
-}
-
-.pz-bring-list {
-  list-style: none;
-  padding: 0;
-  margin: 18px 0 0;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.pz-bring-list li {
-  display: flex;
-  align-items: baseline;
-  gap: 14px;
-  font-size: 16px;
-  line-height: 1.4;
-}
-
-.pz-bring-list li::before {
-  content: "";
-  flex-shrink: 0;
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background: var(--pz-accent);
-  transform: translateY(2px);
-}
-
-.pz-bring-col--you .pz-bring-list li::before { background: var(--pz-secondary); }
-
-@media (max-width: 720px) {
-  .pz-bring-split { grid-template-columns: 1fr; }
-  .pz-bring-col--you { border-left: 0; border-top: 1px solid var(--pz-rule); }
-}
-
-/* ── Getting there ────────────────────────────────────────────── */
-.pz-getting {
-  display: grid;
-  grid-template-columns: 1.1fr 1fr;
-  gap: 40px;
-  align-items: start;
-}
-
-.pz-transit-list {
-  display: flex;
-  flex-direction: column;
-  gap: 18px;
-}
-
-.pz-transit-row {
-  display: grid;
-  grid-template-columns: 44px 1fr;
-  gap: 18px;
-  padding: 18px 0;
-  border-bottom: 1px solid var(--pz-rule);
-  align-items: start;
-}
-
-.pz-transit-row:last-child { border-bottom: 0; }
-
-.pz-transit-ico {
-  width: 36px;
-  height: 36px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 10px;
-  background: var(--pz-bg-tint);
-  color: var(--pz-accent-deep);
-}
-
-.pz-transit-ico svg { width: 22px; height: 22px; }
-
-.pz-transit-row h4 {
-  margin: 0 0 4px;
-  font-family: var(--pz-font-display);
-  font-size: 18px;
-  font-weight: 600;
-  letter-spacing: -0.005em;
-}
-
-.pz-transit-row p {
-  margin: 0;
-  color: var(--pz-ink-soft);
-  font-size: 15px;
-  line-height: 1.5;
-}
-
-.pz-line {
-  display: inline-block;
-  font-family: var(--pz-font-mono);
-  font-size: 12px;
-  background: var(--pz-accent);
-  color: #fff;
-  padding: 2px 7px;
-  border-radius: 4px;
-  margin-right: 4px;
-  letter-spacing: 0.04em;
-}
-
-.pz-map-card {
-  background: var(--pz-card);
-  border: 1px solid var(--pz-rule);
-  border-radius: 20px;
-  overflow: hidden;
-  position: sticky;
-  top: 100px;
-}
-
-.pz-map-stage {
-  position: relative;
-  aspect-ratio: 4 / 3;
-  border-bottom: 1px solid var(--pz-rule);
-  overflow: hidden;
-}
-
-.pz-map-meta {
-  padding: 18px 22px;
-  display: flex;
-  justify-content: space-between;
-  gap: 16px;
-  align-items: center;
-}
-
-.pz-map-name {
-  font-family: var(--pz-font-display);
-  font-weight: 600;
-  font-size: 17px;
-}
-
-.pz-map-coord {
-  font-family: var(--pz-font-mono);
-  font-size: 12px;
-  color: var(--pz-muted);
-}
-
-@media (max-width: 900px) {
-  .pz-getting { grid-template-columns: 1fr; }
-  .pz-map-card { position: static; }
-}
-
-/* ── FAQ ──────────────────────────────────────────────────────── */
-.pz-faq { max-width: 880px; }
-
-.pz-faq-row { border-top: 1px solid var(--pz-rule); }
-.pz-faq-row:last-of-type { border-bottom: 1px solid var(--pz-rule); }
-
-.pz-faq-row summary {
-  list-style: none;
-  cursor: pointer;
-  padding: 22px 0;
-  display: flex;
-  align-items: baseline;
-  gap: 20px;
-  font-family: var(--pz-font-display);
-  font-size: clamp(19px, 1.9vw, 24px);
-  font-weight: 600;
-  letter-spacing: -0.01em;
-  color: var(--pz-ink);
-}
-
-.pz-faq-row summary::-webkit-details-marker { display: none; }
-
-.pz-q-num {
-  font-family: var(--pz-font-mono);
-  font-size: 12px;
-  font-weight: 400;
-  color: var(--pz-muted);
-  letter-spacing: 0.06em;
-  flex-shrink: 0;
-  width: 32px;
-}
-
-.pz-q-text { flex: 1; text-wrap: balance; }
-
-.pz-q-toggle {
-  flex-shrink: 0;
-  width: 24px;
-  height: 24px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-}
-
-.pz-q-toggle::before,
-.pz-q-toggle::after {
-  content: "";
-  position: absolute;
-  background: var(--pz-ink);
-  border-radius: 2px;
-}
-
-.pz-q-toggle::before { width: 14px; height: 2px; }
-.pz-q-toggle::after { height: 14px; width: 2px; transition: transform 0.2s; }
-
-.pz-faq-row[open] .pz-q-toggle::after { transform: scaleY(0); }
-
-.pz-faq-a {
-  padding: 0 0 24px 52px;
-  color: var(--pz-ink-soft);
-  font-size: 16.5px;
-  line-height: 1.55;
-  max-width: 64ch;
-}
-
-@media (max-width: 640px) {
-  .pz-faq-a { padding-left: 32px; }
-}
-
-/* ── Organizers ───────────────────────────────────────────────── */
-.pz-org-card {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  border: 1px solid var(--pz-rule);
-  border-radius: 24px;
-  overflow: hidden;
-  background: var(--pz-card);
-}
-
-.pz-org-text { padding: 40px 40px 44px; }
-
-.pz-org-text h3 {
-  font-family: var(--pz-font-display);
-  font-size: clamp(26px, 3vw, 36px);
-  font-weight: 600;
-  margin: 8px 0 16px;
-  letter-spacing: -0.015em;
-  line-height: 1.05;
-}
-
-.pz-org-text p {
-  margin: 0 0 16px;
-  color: var(--pz-ink-soft);
-  font-size: 16.5px;
-  line-height: 1.55;
-}
-
-.pz-org-links {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin-top: 22px;
-}
-
-.pz-org-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 8px 14px;
-  border: 1px solid var(--pz-rule);
-  border-radius: 999px;
-  background: var(--pz-bg);
-  font-size: 13px;
-  text-decoration: none;
-  font-family: var(--pz-font-mono);
-  letter-spacing: 0.04em;
-  transition: background 0.15s;
-}
-
-.pz-org-link:hover { background: var(--pz-accent-soft); }
-
-.pz-org-art {
-  background: var(--pz-bg-tint);
-  position: relative;
-  min-height: 280px;
-  overflow: hidden;
-}
-
-.pz-org-photo {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
-
-@media (max-width: 760px) {
-  .pz-org-card { grid-template-columns: 1fr; }
-  .pz-org-art { min-height: 200px; }
-}
-
-/* ── Signup section ───────────────────────────────────────────── */
-.pz-signup {
-  background: var(--pz-ink);
-  color: var(--pz-bg);
-  border-radius: 28px;
-  padding: clamp(40px, 5vw, 64px);
-  display: grid;
-  grid-template-columns: 1.1fr 1fr;
-  gap: 48px;
-  align-items: center;
-  position: relative;
-  overflow: hidden;
-}
-
+/* ── Signup blob ─────────────────────────────────────────────── */
 .pz-signup::before {
   content: "";
   position: absolute;
-  width: 380px;
-  height: 380px;
-  border-radius: 50%;
-  background: var(--pz-accent);
-  opacity: 0.18;
-  right: -120px;
-  top: -120px;
-  filter: blur(2px);
-  pointer-events: none;
+  width: 380px; height: 380px; border-radius: 50%;
+  background: var(--pz-accent); opacity: 0.18;
+  right: -120px; top: -120px; filter: blur(2px); pointer-events: none;
 }
 
-.pz-signup-eyebrow {
-  font-family: var(--pz-font-mono);
-  font-size: 12px;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: color-mix(in srgb, var(--pz-bg) 60%, transparent);
-  display: block;
-  margin-bottom: 12px;
-}
-
-.pz-signup-head h3 {
-  font-family: var(--pz-font-display);
-  font-size: clamp(30px, 3.6vw, 48px);
-  font-weight: 700;
-  margin: 0 0 14px;
-  letter-spacing: -0.025em;
-  line-height: 1;
-  text-wrap: balance;
-}
-
-.pz-signup-accent { color: var(--pz-accent); }
-
-.pz-signup-head p {
-  margin: 0;
-  font-size: 16.5px;
-  line-height: 1.55;
-  color: color-mix(in srgb, var(--pz-bg) 75%, transparent);
-  max-width: 36ch;
-}
-
-.pz-signup-form {
-  position: relative;
-  z-index: 1;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.pz-input-group {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-
-.pz-input-group label {
-  font-family: var(--pz-font-mono);
-  font-size: 11px;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: color-mix(in srgb, var(--pz-bg) 60%, transparent);
-}
-
-.pz-input-group input {
-  appearance: none;
-  width: 100%;
-  padding: 14px 16px;
-  border: 1px solid color-mix(in srgb, var(--pz-bg) 18%, transparent);
-  background: color-mix(in srgb, var(--pz-bg) 6%, transparent);
-  color: var(--pz-bg);
-  font: 500 16px var(--pz-font-body);
-  border-radius: 12px;
-  outline: none;
-  transition: border-color 0.15s, background 0.15s;
-}
-
-.pz-input-group input::placeholder { color: color-mix(in srgb, var(--pz-bg) 35%, transparent); }
-
-.pz-input-group input:focus {
-  border-color: var(--pz-accent);
-  background: color-mix(in srgb, var(--pz-bg) 10%, transparent);
-}
-
-.pz-lang-radio {
-  display: flex;
-  gap: 8px;
-  padding: 4px;
-  background: color-mix(in srgb, var(--pz-bg) 8%, transparent);
-  border-radius: 12px;
-  border: 1px solid color-mix(in srgb, var(--pz-bg) 16%, transparent);
-}
-
-.pz-lang-radio button {
-  appearance: none;
-  flex: 1;
-  padding: 10px 14px;
-  border: 0;
-  background: transparent;
-  color: color-mix(in srgb, var(--pz-bg) 65%, transparent);
-  font: 500 14px var(--pz-font-body);
-  border-radius: 8px;
-  cursor: pointer;
-  transition: all 0.15s;
-}
-
-.pz-lang-radio button[data-on="1"] {
-  background: var(--pz-accent);
-  color: #fff;
-}
-
-.pz-signup-submit {
-  margin-top: 8px;
-  width: 100%;
-  padding: 16px 22px;
-  border: 0;
-  border-radius: 12px;
-  background: var(--pz-accent);
-  color: #fff;
-  font: 600 16px var(--pz-font-body);
-  cursor: pointer;
-  transition: background 0.15s, transform 0.12s;
-}
-
-.pz-signup-submit:hover:not(:disabled) { background: var(--pz-accent-deep); transform: translateY(-1px); }
-.pz-signup-submit:disabled { opacity: 0.45; cursor: default; }
-
-.pz-signup-error {
-  margin: 0 0 4px;
-  font-size: 13px;
-  color: #f87171;
-}
-
-.pz-signup-or {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  font-size: 13px;
-  font-family: var(--pz-font-mono);
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  opacity: 0.6;
-  margin: 4px 0;
-}
-.pz-signup-or::before,
-.pz-signup-or::after {
-  content: '';
-  flex: 1;
-  height: 1px;
-  background: currentColor;
-  opacity: 0.3;
-}
-
-.pz-input-hint {
-  display: block;
-  margin-top: 5px;
-  font-size: 12.5px;
-  opacity: 0.55;
-}
-
-.pz-signup-fine {
-  margin-top: 6px;
-  font-size: 12.5px;
-  color: color-mix(in srgb, var(--pz-bg) 50%, transparent);
-  line-height: 1.5;
-}
-
-.pz-signup-success {
-  padding: 32px;
-  border-radius: 18px;
-  background: color-mix(in srgb, var(--pz-bg) 10%, transparent);
-  border: 1px solid color-mix(in srgb, var(--pz-bg) 18%, transparent);
-}
-
-.pz-signup-success h4 {
-  margin: 0 0 8px;
-  font-family: var(--pz-font-display);
-  font-size: 22px;
-  font-weight: 600;
-}
-
-.pz-signup-success p {
-  margin: 0;
-  font-size: 15px;
-  color: color-mix(in srgb, var(--pz-bg) 75%, transparent);
-}
-
-@media (max-width: 820px) {
-  .pz-signup { grid-template-columns: 1fr; padding: 36px 28px; }
-}
-
-/* ── Footer ───────────────────────────────────────────────────── */
-.pz-footer {
-  padding: 48px 0 56px;
-  border-top: 1px solid var(--pz-rule);
-  font-size: 13.5px;
-  color: var(--pz-muted);
-}
-
-.pz-footer-inner {
-  display: flex;
-  justify-content: space-between;
-  gap: 24px;
-  flex-wrap: wrap;
-  align-items: baseline;
-  padding: 0 32px;
-}
-
-.pz-footer .pz-brand { font-size: 15px; }
-
-.pz-footer-links { display: flex; gap: 22px; }
-
-.pz-footer-links a {
-  color: var(--pz-muted);
-  text-decoration: none;
-  transition: color 0.15s;
-}
-
-.pz-footer-links a:hover { color: var(--pz-ink); }
-
-/* ── Signup FAB ───────────────────────────────────────────────── */
-.pz-signup-fab {
-  position: fixed;
-  bottom: 22px;
-  right: 22px;
-  z-index: 25;
-  display: flex;
-  align-items: flex-start;
-  gap: 6px;
-  animation: pzFabIn 0.5s cubic-bezier(0.2, 0.8, 0.3, 1) 0.4s both;
-}
+/* ── FAB ─────────────────────────────────────────────────────── */
+.pz-signup-fab { animation: pzFabIn 0.5s cubic-bezier(0.2, 0.8, 0.3, 1) 0.4s both; }
+.pz-fab-pulse  { animation: pzFabPulse 2.6s ease-out infinite; }
 
 @keyframes pzFabIn {
   from { transform: translateY(80px) scale(0.6); opacity: 0; }
   to   { transform: translateY(0) scale(1); opacity: 1; }
 }
-
-.pz-fab-main {
-  position: relative;
-  display: flex;
-  align-items: center;
-  height: 64px;
-  padding: 0 22px 0 0;
-  border: 0;
-  border-radius: 999px;
-  background: var(--pz-accent);
-  color: #fff;
-  cursor: pointer;
-  box-shadow:
-    0 18px 40px color-mix(in srgb, var(--pz-accent) 35%, transparent),
-    0 4px 12px rgba(0,0,0,0.18);
-  transition: transform 0.18s cubic-bezier(0.2, 0.8, 0.3, 1), box-shadow 0.18s, background 0.15s;
-  overflow: hidden;
-}
-
-.pz-fab-main:hover {
-  transform: translateY(-2px);
-  background: var(--pz-accent-deep);
-  box-shadow:
-    0 22px 50px color-mix(in srgb, var(--pz-accent) 45%, transparent),
-    0 6px 16px rgba(0,0,0,0.22);
-}
-
-.pz-fab-main:active { transform: translateY(0); }
-
-.pz-fab-icon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 64px;
-  height: 64px;
-  flex-shrink: 0;
-}
-
-.pz-fab-label {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  white-space: nowrap;
-  text-align: left;
-  font-family: var(--pz-font-body);
-}
-
-.pz-fab-label strong {
-  display: block;
-  font-size: 14px;
-  font-weight: 700;
-  line-height: 1.1;
-  letter-spacing: -0.005em;
-}
-
-.pz-fab-label em {
-  display: block;
-  font-style: normal;
-  font-size: 12px;
-  font-weight: 500;
-  line-height: 1.2;
-  margin-top: 2px;
-  color: color-mix(in srgb, #fff 75%, transparent);
-}
-
-.pz-fab-pulse {
-  position: absolute;
-  inset: 0;
-  border-radius: 999px;
-  background: var(--pz-accent);
-  z-index: -1;
-  animation: pzFabPulse 2.6s ease-out infinite;
-}
-
 @keyframes pzFabPulse {
   0%   { transform: scale(1);    opacity: 0.6; }
   100% { transform: scale(1.55); opacity: 0; }
 }
 
-.pz-fab-close {
-  appearance: none;
-  width: 28px;
-  height: 28px;
-  border-radius: 50%;
-  border: 0;
-  background: var(--pz-card);
-  color: var(--pz-muted);
-  font-size: 13px;
-  line-height: 1;
-  cursor: pointer;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.12);
-  opacity: 0;
-  transform: scale(0.6);
-  transition: opacity 0.18s, transform 0.18s, color 0.15s;
-  margin-top: 6px;
-}
-
 .pz-signup-fab:hover .pz-fab-close,
-.pz-signup-fab:focus-within .pz-fab-close {
-  opacity: 1;
-  transform: scale(1);
-}
-
-.pz-fab-close:hover { color: var(--pz-ink); }
-
-@media (max-width: 720px) {
-  .pz-signup-fab { bottom: 16px; right: 16px; }
-  .pz-fab-main { padding-right: 0; border-radius: 50%; }
-  .pz-fab-label { display: none; }
-  .pz-fab-close { opacity: 1; transform: scale(1); }
-}
+.pz-signup-fab:focus-within .pz-fab-close { opacity: 1; transform: scale(1); }
 
 @media (prefers-reduced-motion: reduce) {
-  .pz-fab-pulse { animation: none; opacity: 0; }
+  .pz-fab-pulse  { animation: none; opacity: 0; }
   .pz-signup-fab { animation: none; }
+}
+
+/* ── Tram line badges (v-html) ───────────────────────────────── */
+.pz-line {
+  display: inline-block;
+  font-family: var(--pz-font-mono); font-size: 12px;
+  background: var(--pz-accent); color: #fff;
+  padding: 2px 7px; border-radius: 4px; margin-right: 4px; letter-spacing: 0.04em;
 }
 </style>
