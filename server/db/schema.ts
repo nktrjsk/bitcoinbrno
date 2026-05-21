@@ -12,7 +12,8 @@ export const users = sqliteTable('users', {
 export const userSubscriptions = sqliteTable('user_subscriptions', {
   id: integer('id').primaryKey({ autoIncrement: true }),
   userId: integer('user_id').notNull().references(() => users.id, { onDelete: 'cascade' }),
-  topic: text('topic').notNull(),
+  category: text('category').notNull(),
+  community: text('community').notNull(),
 }, (t) => [
-  unique().on(t.userId, t.topic),
+  unique().on(t.userId, t.category, t.community),
 ])
