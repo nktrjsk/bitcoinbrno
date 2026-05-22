@@ -3,7 +3,7 @@
 
     <!-- NAV -->
     <nav class="sticky top-0 z-30 border-b border-[var(--pz-rule)] [backdrop-filter:blur(18px)_saturate(140%)] [-webkit-backdrop-filter:blur(18px)_saturate(140%)]" style="background: color-mix(in srgb, var(--pz-bg) 85%, transparent)">
-      <div class="max-w-[1240px] mx-auto px-8 flex items-center justify-between gap-6 py-3.5">
+      <div class="max-w-[1240px] mx-auto px-4 sm:px-8 flex items-center justify-between gap-4 sm:gap-6 py-3.5">
         <a href="#top" class="flex items-center gap-3 no-underline [font-family:var(--pz-font-display)] font-bold text-lg tracking-[-0.01em]">
           <img src="/bitcoinbrno.jpg" alt="Bitcoin Brno" class="h-9 w-auto rounded-lg">
           <span>Bitcoin Brno</span>
@@ -77,7 +77,7 @@
     </header>
 
     <!-- EVENTS -->
-    <section id="top" class="max-w-[1240px] mx-auto px-8 py-[clamp(48px,6vw,80px)]">
+    <section id="top" class="max-w-[1240px] mx-auto px-4 sm:px-8 py-[clamp(48px,6vw,80px)]">
       <h2 class="[font-family:var(--pz-font-display)] text-[clamp(28px,4vw,42px)] font-bold tracking-[-0.02em] m-0 mb-8">Nadcházející akce v Brně</h2>
       <div v-if="events && events.length" class="flex flex-col gap-4">
         <a
@@ -241,9 +241,9 @@
     </section>
 
     <!-- SIGNUP SECTION -->
-    <section id="signup" class="py-[clamp(72px,9vw,128px)] border-t border-[var(--pz-rule)]">
-      <div class="max-w-[1240px] mx-auto px-8">
-        <div class="pz-signup relative bg-[var(--pz-ink)] text-[var(--pz-bg)] rounded-[28px] grid gap-12 items-center overflow-hidden max-[820px]:grid-cols-1" style="padding: clamp(40px,5vw,64px); grid-template-columns: 1.1fr 1fr">
+    <section id="signup" class="py-[clamp(40px,9vw,128px)] border-t border-[var(--pz-rule)]">
+      <div class="max-w-[1240px] mx-auto px-4 sm:px-8">
+        <div class="pz-signup relative bg-[var(--pz-ink)] text-[var(--pz-bg)] rounded-[20px] sm:rounded-[28px] grid grid-cols-1 md:grid-cols-[1.1fr_1fr] gap-8 md:gap-12 items-center overflow-hidden p-6 sm:p-10 lg:p-16">
           <!-- Head -->
           <div>
             <span class="[font-family:var(--pz-font-mono)] text-[12px] tracking-[0.14em] uppercase block mb-3" style="color: color-mix(in srgb, var(--pz-bg) 60%, transparent)">{{ t.signup.eyebrow }}</span>
@@ -261,12 +261,12 @@
 
           <!-- Form -->
           <form v-else class="relative z-[1] flex flex-col gap-3" @submit.prevent="submitSignup">
-            <div class="flex gap-3 items-start">
+            <div class="flex flex-col sm:flex-row gap-3 items-start">
               <div class="flex-1 flex flex-col gap-1.5">
                 <label for="pz-email" class="[font-family:var(--pz-font-mono)] text-[11px] tracking-[0.1em] uppercase" style="color: color-mix(in srgb, var(--pz-bg) 60%, transparent)">{{ t.signup.emailLabel }}</label>
                 <UInput id="pz-email" v-model="email" type="email" :placeholder="t.signup.emailPh" color="primary" />
               </div>
-              <div class="flex-none flex flex-col items-center gap-1.5">
+              <div class="hidden sm:flex flex-none flex-col items-center gap-1.5">
                 <span class="[font-family:var(--pz-font-mono)] text-[11px] invisible">·</span>
                 <span class="[font-family:var(--pz-font-mono)] text-[13px] tracking-[0.08em] uppercase opacity-60 h-9 flex items-center">nebo</span>
               </div>
@@ -274,7 +274,6 @@
                 <label for="pz-phone" class="[font-family:var(--pz-font-mono)] text-[11px] tracking-[0.1em] uppercase" style="color: color-mix(in srgb, var(--pz-bg) 60%, transparent)">{{ t.signup.phoneLabel }}</label>
                 <UInput id="pz-phone" v-model="phone" type="tel" :placeholder="t.signup.phonePh" autocomplete="tel" :color="phoneError ? 'error' : 'primary'" :highlight="phoneError" />
                 <span v-if="phoneError" class="text-[12.5px] text-red-400">{{ lang === 'cs' ? 'Zadej platné české číslo (+420 nebo 9 číslic)' : 'Enter a valid Czech number (+420 or 9 digits)' }}</span>
-                <span v-else-if="!email.trim() && !phone.trim()" class="text-[12.5px] opacity-55">{{ t.signup.contactHint }}</span>
               </div>
             </div>
 
@@ -297,7 +296,7 @@
 
     <!-- FOOTER -->
     <footer class="py-12 border-t border-[var(--pz-rule)] text-[13.5px] text-[var(--pz-muted)]">
-      <div class="max-w-[1240px] mx-auto px-8 flex justify-between gap-6 flex-wrap items-baseline">
+      <div class="max-w-[1240px] mx-auto px-4 sm:px-8 flex justify-between gap-6 flex-wrap items-baseline">
         <a href="#top" class="flex items-center gap-3 [font-family:var(--pz-font-display)] font-bold text-[15px] no-underline text-[var(--pz-ink)]">
           <img src="/bitcoinbrno.jpg" alt="Bitcoin Brno" class="h-7 w-auto rounded-lg">
           <span>{{ t.footer.rights }}</span>
@@ -462,11 +461,9 @@ const copy = {
       lede: 'Pizza Day Brno pořádá místní bitcoinová komunita — parta dobrovolníků, kteří se scházejí každé druhé pondělí (Bitcoin Beer) a rádi sdílejí, co se dozvěděli, nebo si jen tak povídají o čemkoliv. Nejsme banda finančních poradců a investorů, jsme normální lidi.',
       cta: 'Připoj se do skupiny',
       links: [
-        { label: 'Signal', href: 'https://signal.group/#CjQKIK0vXB9EYpepoD4CL_aB2BXXOTSk8rXX26bjIfVTmeZqEhCOdTX83XGSUnYr6BIwMgwy' },
-        { label: 'Instagram', href: 'https://www.instagram.com/jednadvacetorg' },
-        { label: 'X', href: 'https://x.com/jednadvacetorg' },
-        { label: 'Facebook', href: 'https://www.facebook.com/profile.php?id=61573496275870' },
-        { label: 'Nostr', href: 'https://njump.me/npub18csp5akqc4dfz9acspxqpg6ptx23gcjaapds0th7a7n6muux3fdqfjy4jv' },
+        { label: 'Facebook', href: 'https://www.facebook.com/profile.php?id=61590066953535' },
+        { label: 'Instagram', href: 'https://www.instagram.com/bitcoinbrno/' },
+        { label: 'Signal', href: 'https://signal.group/#CjQKIL2KyHPPAotCRX1bQS2Kx_NV46s7om25K23Sy5Sf_u2pEhB1vJrPckxkIryjgdeTybmx' },
       ],
     },
     signup: {
@@ -556,11 +553,9 @@ const copy = {
       lede: "Pizza Day Brno is run by the local Bitcoin community — a small crew of volunteers who meet every other Tuesday and like to share what we know. No sales pitch, no get-rich-quick. Just people.",
       cta: 'Join the meetup',
       links: [
-        { label: 'Signal', href: 'https://signal.group/#CjQKIK0vXB9EYpepoD4CL_aB2BXXOTSk8rXX26bjIfVTmeZqEhCOdTX83XGSUnYr6BIwMgwy' },
-        { label: 'Instagram', href: 'https://www.instagram.com/jednadvacetorg' },
-        { label: 'X', href: 'https://x.com/jednadvacetorg' },
-        { label: 'Facebook', href: 'https://www.facebook.com/profile.php?id=61573496275870' },
-        { label: 'Nostr', href: 'https://njump.me/npub18csp5akqc4dfz9acspxqpg6ptx23gcjaapds0th7a7n6muux3fdqfjy4jv' },
+        { label: 'Facebook', href: 'https://www.facebook.com/profile.php?id=61590066953535' },
+        { label: 'Instagram', href: 'https://www.instagram.com/bitcoinbrno/' },
+        { label: 'Signal', href: 'https://signal.group/#CjQKIL2KyHPPAotCRX1bQS2Kx_NV46s7om25K23Sy5Sf_u2pEhB1vJrPckxkIryjgdeTybmx' },
       ],
     },
     signup: {
