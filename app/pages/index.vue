@@ -484,7 +484,7 @@ const copy = {
     fab: { label: 'Pozvánky do mailu/mobilu', sub: 'Dozvíš se, kdy bude další akce' },
     footer: {
       rights: 'Bitcoin Brno',
-      links: [{ label: 'GDPR / Soukromí', href: '' }, { label: 'Kontakt', href: 'mailto:hello@pizzadaybrno.cz' }],
+      links: [],
     },
   },
   en: {
@@ -578,7 +578,7 @@ const copy = {
     fab: { label: 'Newsletter', sub: 'Hear when the next one happens' },
     footer: {
       rights: 'Bitcoin Brno · community event',
-      links: [{ label: 'Privacy / GDPR', href: '' }, { label: 'Contact', href: 'mailto:hello@pizzadaybrno.cz' }],
+      links: [],
     },
   },
 }
