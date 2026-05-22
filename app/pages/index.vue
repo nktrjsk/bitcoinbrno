@@ -9,11 +9,7 @@
           <span>Pizza Day Brno</span>
         </a>
         <div class="hidden md:flex gap-1">
-          <UButton href="#expect"   variant="link" color="neutral" size="sm">{{ t.nav.what }}</UButton>
-          <UButton href="#schedule" variant="link" color="neutral" size="sm">{{ t.nav.schedule }}</UButton>
-          <UButton href="#getting"  variant="link" color="neutral" size="sm">{{ t.nav.getting }}</UButton>
-          <UButton href="#faq"      variant="link" color="neutral" size="sm">{{ t.nav.faq }}</UButton>
-          <UButton href="#signup"   variant="link" color="neutral" size="sm">{{ t.nav.signup }}</UButton>
+          <UButton href="#signup" variant="link" color="neutral" size="sm">{{ t.nav.signup }}</UButton>
         </div>
         <!-- Lang toggle (hidden) -->
         <div v-if="false" role="tablist" aria-label="Language" class="inline-flex border border-[var(--pz-rule)] rounded-full p-[3px] bg-[var(--pz-card)] [font-family:var(--pz-font-mono)] text-[11px] tracking-[0.08em]">
