@@ -42,7 +42,8 @@ export default defineNuxtConfig({
       deployConfig: true,
       nodeCompat: true,
       wrangler: {
-        name: 'jednadvacetorg-web',
+        name: 'bitcoinbrno-web',
+        account_id: '9c684d9563a02412df553d03b103e985',
         assets: {
           html_handling: 'drop-trailing-slash',
         },
