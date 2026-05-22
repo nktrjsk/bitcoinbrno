@@ -10,7 +10,7 @@
         </a>
         <div class="hidden md:flex gap-1">
         </div>
-        <SocialLinks :links="t.org.links.map(l => l.href)" />
+        <SocialLinks :links="t.org.links.map(l => l.href)" variant="link" />
       </div>
     </nav>
 
