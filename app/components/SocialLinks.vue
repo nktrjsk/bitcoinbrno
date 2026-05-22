@@ -21,6 +21,8 @@ const props = defineProps<{
 
 const socialPatterns: Array<{ pattern: RegExp, icon: string | (() => VNode), label: string, transform?: (link: string) => string }> = [
   { pattern: /^(nprofile|npub)/, icon: IconNostr, label: 'Nostr', transform: (link) => `https://nostr.com/${link}` },
+  { pattern: /^https?:\/\/njump\.me\//, icon: IconNostr, label: 'Nostr' },
+  { pattern: /^https?:\/\/signal\.group/, icon: 'i-simple-icons-signal', label: 'Signal' },
   { pattern: /^https?:\/\/(www\.)?x\.com\//, icon: 'i-simple-icons-x', label: 'X' },
   { pattern: /^https?:\/\/(www\.)?facebook\.com\//, icon: 'i-simple-icons-facebook', label: 'Facebook' },
   { pattern: /^https?:\/\/(www\.)?instagram\.com\//, icon: 'i-simple-icons-instagram', label: 'Instagram' },

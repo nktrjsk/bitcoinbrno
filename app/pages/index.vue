@@ -6,16 +6,11 @@
       <div class="max-w-[1240px] mx-auto px-8 flex items-center justify-between gap-6 py-3.5">
         <a href="#top" class="flex items-center gap-3 no-underline [font-family:var(--pz-font-display)] font-bold text-lg tracking-[-0.01em]">
           <img src="/bitcoinbrno.jpg" alt="Bitcoin Brno" class="h-9 w-auto rounded-lg">
-          <span>Pizza Day Brno</span>
+          <span>Bitcoin Brno</span>
         </a>
         <div class="hidden md:flex gap-1">
-          <UButton href="#signup" variant="link" color="neutral" size="sm">{{ t.nav.signup }}</UButton>
         </div>
-        <!-- Lang toggle (hidden) -->
-        <div v-if="false" role="tablist" aria-label="Language" class="inline-flex border border-[var(--pz-rule)] rounded-full p-[3px] bg-[var(--pz-card)] [font-family:var(--pz-font-mono)] text-[11px] tracking-[0.08em]">
-          <button :class="['px-3 py-[5px] rounded-full cursor-pointer border-0 font-[inherit] tracking-[inherit] transition-[background,color]', lang === 'cs' ? 'bg-[var(--pz-ink)] text-[var(--pz-bg)]' : 'bg-transparent text-[var(--pz-muted)]']" @click="lang = 'cs'">CS</button>
-          <button :class="['px-3 py-[5px] rounded-full cursor-pointer border-0 font-[inherit] tracking-[inherit] transition-[background,color]', lang === 'en' ? 'bg-[var(--pz-ink)] text-[var(--pz-bg)]' : 'bg-transparent text-[var(--pz-muted)]']" @click="lang = 'en'">EN</button>
-        </div>
+        <SocialLinks :links="t.org.links.map(l => l.href)" />
       </div>
     </nav>
 
@@ -266,25 +261,24 @@
 
           <!-- Form -->
           <form v-else class="relative z-[1] flex flex-col gap-3" @submit.prevent="submitSignup">
-            <div class="flex flex-col gap-1.5">
-              <label for="pz-email" class="[font-family:var(--pz-font-mono)] text-[11px] tracking-[0.1em] uppercase" style="color: color-mix(in srgb, var(--pz-bg) 60%, transparent)">{{ t.signup.emailLabel }}</label>
-              <UInput id="pz-email" v-model="email" type="email" :placeholder="t.signup.emailPh" color="primary" />
+            <div class="flex gap-3 items-start">
+              <div class="flex-1 flex flex-col gap-1.5">
+                <label for="pz-email" class="[font-family:var(--pz-font-mono)] text-[11px] tracking-[0.1em] uppercase" style="color: color-mix(in srgb, var(--pz-bg) 60%, transparent)">{{ t.signup.emailLabel }}</label>
+                <UInput id="pz-email" v-model="email" type="email" :placeholder="t.signup.emailPh" color="primary" />
+              </div>
+              <div class="flex-none flex flex-col items-center gap-1.5">
+                <span class="[font-family:var(--pz-font-mono)] text-[11px] invisible">·</span>
+                <span class="[font-family:var(--pz-font-mono)] text-[13px] tracking-[0.08em] uppercase opacity-60 h-9 flex items-center">nebo</span>
+              </div>
+              <div class="flex-1 flex flex-col gap-1.5">
+                <label for="pz-phone" class="[font-family:var(--pz-font-mono)] text-[11px] tracking-[0.1em] uppercase" style="color: color-mix(in srgb, var(--pz-bg) 60%, transparent)">{{ t.signup.phoneLabel }}</label>
+                <UInput id="pz-phone" v-model="phone" type="tel" :placeholder="t.signup.phonePh" autocomplete="tel" :color="phoneError ? 'error' : 'primary'" :highlight="phoneError" />
+                <span v-if="phoneError" class="text-[12.5px] text-red-400">{{ lang === 'cs' ? 'Zadej platné české číslo (+420 nebo 9 číslic)' : 'Enter a valid Czech number (+420 or 9 digits)' }}</span>
+                <span v-else-if="!email.trim() && !phone.trim()" class="text-[12.5px] opacity-55">{{ t.signup.contactHint }}</span>
+              </div>
             </div>
 
-            <div class="flex items-center gap-3 my-1 [font-family:var(--pz-font-mono)] text-[13px] tracking-[0.08em] uppercase opacity-60" style="--line-color: currentColor">
-              <span class="flex-1 h-px opacity-30" style="background: currentColor" />
-              a/nebo
-              <span class="flex-1 h-px opacity-30" style="background: currentColor" />
-            </div>
-
-            <div class="flex flex-col gap-1.5">
-              <label for="pz-phone" class="[font-family:var(--pz-font-mono)] text-[11px] tracking-[0.1em] uppercase" style="color: color-mix(in srgb, var(--pz-bg) 60%, transparent)">{{ t.signup.phoneLabel }}</label>
-              <UInput id="pz-phone" v-model="phone" type="tel" :placeholder="t.signup.phonePh" autocomplete="tel" :color="phoneError ? 'error' : 'primary'" :highlight="phoneError" />
-              <span v-if="phoneError" class="text-[12.5px] text-red-400">{{ lang === 'cs' ? 'Zadej platné české číslo (+420 nebo 9 číslic)' : 'Enter a valid Czech number (+420 or 9 digits)' }}</span>
-              <span v-else-if="!email.trim() && !phone.trim()" class="text-[12.5px] opacity-55">{{ t.signup.contactHint }}</span>
-            </div>
-
-            <div class="flex flex-col gap-1.5">
+            <div v-if="false" class="flex flex-col gap-1.5">
               <label class="[font-family:var(--pz-font-mono)] text-[11px] tracking-[0.1em] uppercase" style="color: color-mix(in srgb, var(--pz-bg) 60%, transparent)">{{ t.signup.langLabel }}</label>
               <div class="flex gap-2 p-1 rounded-xl" style="background: color-mix(in srgb, var(--pz-bg) 8%, transparent); border: 1px solid color-mix(in srgb, var(--pz-bg) 16%, transparent)">
                 <UButton type="button" :color="prefLang === 'cs' ? 'primary' : 'neutral'" :variant="prefLang === 'cs' ? 'solid' : 'ghost'" class="flex-1" @click="prefLang = 'cs'">Česky</UButton>
@@ -336,7 +330,7 @@
 
 <script setup lang="ts">
 useHead({
-  title: 'Pizza Day Brno 2026',
+  title: 'Bitcoin Brno',
   link: [
     { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
     { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: '' },
@@ -489,8 +483,8 @@ const copy = {
     },
     fab: { label: 'Pozvánky do mailu/mobilu', sub: 'Dozvíš se, kdy bude další akce' },
     footer: {
-      rights: 'Pizza Day Brno',
-      links: [{ label: 'GDPR / Soukromí', href: '#' }, { label: 'Kontakt', href: 'mailto:hello@pizzadaybrno.cz' }],
+      rights: 'Bitcoin Brno',
+      links: [{ label: 'GDPR / Soukromí', href: '' }, { label: 'Kontakt', href: 'mailto:hello@pizzadaybrno.cz' }],
     },
   },
   en: {
@@ -583,8 +577,8 @@ const copy = {
     },
     fab: { label: 'Newsletter', sub: 'Hear when the next one happens' },
     footer: {
-      rights: 'Pizza Day Brno · community event',
-      links: [{ label: 'Privacy / GDPR', href: '#' }, { label: 'Contact', href: 'mailto:hello@pizzadaybrno.cz' }],
+      rights: 'Bitcoin Brno · community event',
+      links: [{ label: 'Privacy / GDPR', href: '' }, { label: 'Contact', href: 'mailto:hello@pizzadaybrno.cz' }],
     },
   },
 }
