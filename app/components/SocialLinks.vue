@@ -18,6 +18,7 @@ const IconNostr = () => h(
 const props = defineProps<{
   links: string[]
   variant?: 'ghost' | 'link' | 'soft' | 'outline' | 'solid'
+  size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl'
 }>()
 
 const socialPatterns: Array<{ pattern: RegExp, icon: string | (() => VNode), label: string, transform?: (link: string) => string }> = [
@@ -55,6 +56,7 @@ const socialLinks = computed(() => {
       :to="social.to"
       target="_blank"
       :variant="variant ?? 'ghost'"
+      :size="size ?? 'md'"
       color="neutral"
       :aria-label="social.label"
     />

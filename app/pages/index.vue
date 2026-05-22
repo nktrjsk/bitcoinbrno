@@ -10,7 +10,7 @@
         </a>
         <div class="hidden md:flex gap-1">
         </div>
-        <SocialLinks :links="t.org.links.map(l => l.href)" variant="link" />
+        <SocialLinks :links="t.org.links.map(l => l.href)" variant="link" size="lg" />
       </div>
     </nav>
 
@@ -261,20 +261,19 @@
 
           <!-- Form -->
           <form v-else class="relative z-[1] flex flex-col gap-3" @submit.prevent="submitSignup">
-            <div class="flex flex-col sm:flex-row gap-3 items-start">
-              <div class="flex-1 flex flex-col gap-1.5">
-                <label for="pz-email" class="[font-family:var(--pz-font-mono)] text-[11px] tracking-[0.1em] uppercase" style="color: color-mix(in srgb, var(--pz-bg) 60%, transparent)">{{ t.signup.emailLabel }}</label>
-                <UInput id="pz-email" v-model="email" type="email" :placeholder="t.signup.emailPh" color="primary" />
-              </div>
-              <div class="hidden sm:flex flex-none flex-col items-center gap-1.5">
-                <span class="[font-family:var(--pz-font-mono)] text-[11px] invisible">·</span>
-                <span class="[font-family:var(--pz-font-mono)] text-[13px] tracking-[0.08em] uppercase opacity-60 h-9 flex items-center">nebo</span>
-              </div>
-              <div class="flex-1 flex flex-col gap-1.5">
-                <label for="pz-phone" class="[font-family:var(--pz-font-mono)] text-[11px] tracking-[0.1em] uppercase" style="color: color-mix(in srgb, var(--pz-bg) 60%, transparent)">{{ t.signup.phoneLabel }}</label>
-                <UInput id="pz-phone" v-model="phone" type="tel" :placeholder="t.signup.phonePh" autocomplete="tel" :color="phoneError ? 'error' : 'primary'" :highlight="phoneError" />
-                <span v-if="phoneError" class="text-[12.5px] text-red-400">{{ lang === 'cs' ? 'Zadej platné české číslo (+420 nebo 9 číslic)' : 'Enter a valid Czech number (+420 or 9 digits)' }}</span>
-              </div>
+            <div class="flex flex-col gap-1.5">
+              <label for="pz-contact" class="[font-family:var(--pz-font-mono)] text-[11px] tracking-[0.1em] uppercase" style="color: color-mix(in srgb, var(--pz-bg) 60%, transparent)">{{ t.signup.emailLabel }} / {{ t.signup.phoneLabel }}</label>
+              <UInput
+                id="pz-contact"
+                v-model="contact"
+                type="text"
+                inputmode="email"
+                autocomplete="email"
+                :placeholder="lang === 'cs' ? 'tvoje@adresa.cz nebo +420 …' : 'you@example.com or +420 …'"
+                :color="contactError ? 'error' : 'primary'"
+                :highlight="contactError"
+              />
+              <span v-if="contactError" class="text-[12.5px] text-red-400">{{ lang === 'cs' ? 'Zadej platné české číslo (+420 nebo 9 číslic)' : 'Enter a valid Czech number (+420 or 9 digits)' }}</span>
             </div>
 
             <div v-if="false" class="flex flex-col gap-1.5">
@@ -287,7 +286,7 @@
 
             <p v-if="signupError" class="m-0 mb-1 text-[13px] text-red-400">{{ signupError }}</p>
 
-            <UButton type="submit" color="primary" block size="lg" :disabled="(!email.trim() && !phone.trim()) || phoneError" class="mt-2">{{ t.signup.submit }}</UButton>
+            <UButton type="submit" color="primary" block size="lg" :disabled="!contact.trim() || detectedType === 'unknown' || contactError" class="mt-2">{{ t.signup.submit }}</UButton>
             <p class="m-0 mt-1.5 text-[12.5px] leading-relaxed" style="color: color-mix(in srgb, var(--pz-bg) 50%, transparent)">{{ t.signup.fine }}</p>
           </form>
         </div>
@@ -349,24 +348,37 @@ const fabDismissed = ref(false)
 const prefLang = ref<'cs' | 'en'>('cs')
 const emailDone = ref(false)
 const signupError = ref('')
-const email = ref('')
-const phone = ref('')
+const contact = ref('')
 
-// Accepts +420 prefix (optional) and 9-digit Czech numbers with optional spaces/dashes
-const phoneError = computed(() => {
-  const val = phone.value.trim()
-  if (!val) return false
+// TODO: replace with exact detection logic when disclosed
+type ContactType = 'email' | 'phone' | 'unknown'
+const detectedType = computed<ContactType>(() => {
+  const val = contact.value.trim()
+  if (!val) return 'unknown'
+  if (val.includes('@')) return 'email'
+  if (/^[+0-9]/.test(val)) return 'phone'
+  return 'unknown'
+})
+
+const contactError = computed(() => {
+  if (detectedType.value !== 'phone') return false
+  const val = contact.value.trim()
   return !/^(\+420[\s-]?)?[0-9]{3}[\s-]?[0-9]{3}[\s-]?[0-9]{3}$/.test(val)
 })
 
 async function submitSignup() {
   signupError.value = ''
-  if (!email.value.trim() && !phone.value.trim()) return
-  if (phoneError.value) return
+  if (!contact.value.trim() || detectedType.value === 'unknown') return
+  if (contactError.value) return
+  const isPhone = detectedType.value === 'phone'
   try {
     await $fetch('/api/pizzaday/signup', {
       method: 'POST',
-      body: { email: email.value, phone: phone.value, prefLang: prefLang.value },
+      body: {
+        email: isPhone ? '' : contact.value.trim(),
+        phone: isPhone ? contact.value.trim() : '',
+        prefLang: prefLang.value,
+      },
     })
     emailDone.value = true
   } catch {
@@ -381,7 +393,7 @@ function goToSignup() {
   if (!target) return
   const top = target.getBoundingClientRect().top + window.scrollY - 64
   window.scrollTo({ top, behavior: 'smooth' })
-  setTimeout(() => (document.getElementById('pz-email') as HTMLInputElement)?.focus(), 600)
+  setTimeout(() => (document.getElementById('pz-contact') as HTMLInputElement)?.focus(), 600)
 }
 
 const transitIcons: Record<string, string> = {
