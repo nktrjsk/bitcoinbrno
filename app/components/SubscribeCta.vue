@@ -39,8 +39,17 @@ const conjunction = computed(() =>
   email.value.trim() && phone.value.trim() ? 'a' : 'nebo'
 )
 
+// Accepts +420 prefix (optional) and 9-digit Czech numbers with optional spaces/dashes
+const phoneError = computed(() => {
+  const val = phone.value.trim()
+  if (!val) return false
+  return !/^(\+420[\s-]?)?[0-9]{3}[\s-]?[0-9]{3}[\s-]?[0-9]{3}$/.test(val)
+})
+
 const isValid = computed(() =>
-  selectedCities.value.length > 0 && (email.value.trim() || phone.value.trim())
+  selectedCities.value.length > 0 &&
+  (email.value.trim() || phone.value.trim()) &&
+  !phoneError.value
 )
 
 function submit() {
@@ -91,6 +100,9 @@ function submit() {
         v-model="phone"
         type="tel"
         placeholder="telefonu"
+        autocomplete="tel"
+        :color="phoneError ? 'error' : undefined"
+        :highlight="phoneError"
         :ui="{ base: 'w-36' }"
       />
 

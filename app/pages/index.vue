@@ -283,8 +283,9 @@
 
             <div class="flex flex-col gap-1.5">
               <label for="pz-phone" class="[font-family:var(--pz-font-mono)] text-[11px] tracking-[0.1em] uppercase" style="color: color-mix(in srgb, var(--pz-bg) 60%, transparent)">{{ t.signup.phoneLabel }}</label>
-              <UInput id="pz-phone" v-model="phone" type="tel" :placeholder="t.signup.phonePh" color="primary" />
-              <span v-if="!email.trim() && !phone.trim()" class="text-[12.5px] opacity-55">{{ t.signup.contactHint }}</span>
+              <UInput id="pz-phone" v-model="phone" type="tel" :placeholder="t.signup.phonePh" autocomplete="tel" :color="phoneError ? 'error' : 'primary'" :highlight="phoneError" />
+              <span v-if="phoneError" class="text-[12.5px] text-red-400">{{ lang === 'cs' ? 'Zadej platné české číslo (+420 nebo 9 číslic)' : 'Enter a valid Czech number (+420 or 9 digits)' }}</span>
+              <span v-else-if="!email.trim() && !phone.trim()" class="text-[12.5px] opacity-55">{{ t.signup.contactHint }}</span>
             </div>
 
             <div class="flex flex-col gap-1.5">
@@ -297,7 +298,7 @@
 
             <p v-if="signupError" class="m-0 mb-1 text-[13px] text-red-400">{{ signupError }}</p>
 
-            <UButton type="submit" color="primary" block size="lg" :disabled="!email.trim() && !phone.trim()" class="mt-2">{{ t.signup.submit }}</UButton>
+            <UButton type="submit" color="primary" block size="lg" :disabled="(!email.trim() && !phone.trim()) || phoneError" class="mt-2">{{ t.signup.submit }}</UButton>
             <p class="m-0 mt-1.5 text-[12.5px] leading-relaxed" style="color: color-mix(in srgb, var(--pz-bg) 50%, transparent)">{{ t.signup.fine }}</p>
           </form>
         </div>
@@ -362,9 +363,17 @@ const signupError = ref('')
 const email = ref('')
 const phone = ref('')
 
+// Accepts +420 prefix (optional) and 9-digit Czech numbers with optional spaces/dashes
+const phoneError = computed(() => {
+  const val = phone.value.trim()
+  if (!val) return false
+  return !/^(\+420[\s-]?)?[0-9]{3}[\s-]?[0-9]{3}[\s-]?[0-9]{3}$/.test(val)
+})
+
 async function submitSignup() {
   signupError.value = ''
   if (!email.value.trim() && !phone.value.trim()) return
+  if (phoneError.value) return
   try {
     await $fetch('/api/pizzaday/signup', {
       method: 'POST',
