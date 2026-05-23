@@ -46,15 +46,35 @@ const phoneError = computed(() => {
   return !/^(\+420[\s-]?)?[0-9]{3}[\s-]?[0-9]{3}[\s-]?[0-9]{3}$/.test(val)
 })
 
+const emailError = computed(() => {
+  const val = email.value.trim()
+  if (!val) return false
+  return !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val)
+})
+
 const isValid = computed(() =>
   selectedCities.value.length > 0 &&
   (email.value.trim() || phone.value.trim()) &&
+  !emailError.value &&
   !phoneError.value
 )
 
+function normalizePhone(val: string): string {
+  const stripped = val.trim().replace(/[\s-]/g, '')
+  if (!stripped) return ''
+  return stripped.startsWith('+420') ? stripped : `+420${stripped}`
+}
+
 function submit() {
   if (!isValid.value) return
-  // TODO: wire up backend
+  const payload = {
+    email: email.value.trim().toLowerCase() || undefined,
+    phone: phone.value ? normalizePhone(phone.value) : undefined,
+    communities: selectedCities.value.map(c => c.value),
+    category: selectedType.value.value,
+  }
+  // TODO: wire up backend — payload is normalized and ready
+  console.log(payload)
 }
 </script>
 
@@ -91,6 +111,8 @@ function submit() {
         v-model="email"
         type="email"
         placeholder="e-mailu"
+        :color="emailError ? 'error' : undefined"
+        :highlight="emailError"
         :ui="{ base: 'w-36' }"
       />
 

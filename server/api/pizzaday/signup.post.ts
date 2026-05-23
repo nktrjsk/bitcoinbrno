@@ -1,9 +1,15 @@
 import { db, schema } from '@nuxthub/db'
 
+function normalizePhone(val: string): string {
+  const stripped = (val ?? '').trim().replace(/[\s-]/g, '')
+  if (!stripped) return ''
+  return stripped.startsWith('+420') ? stripped : `+420${stripped}`
+}
+
 export default defineEventHandler(async (event) => {
   const body = await readBody(event)
   const email: string = (body.email ?? '').trim().toLowerCase()
-  const phone: string = (body.phone ?? '').trim()
+  const phone: string = normalizePhone(body.phone)
   const prefLang: 'cs' | 'en' = body.prefLang === 'en' ? 'en' : 'cs'
 
   if (!email && !phone) {

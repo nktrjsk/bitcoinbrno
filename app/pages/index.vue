@@ -366,6 +366,12 @@ const contactError = computed(() => {
   return !/^(\+420[\s-]?)?[0-9]{3}[\s-]?[0-9]{3}[\s-]?[0-9]{3}$/.test(val)
 })
 
+function normalizePhone(val: string): string {
+  const stripped = val.trim().replace(/[\s-]/g, '')
+  if (!stripped) return ''
+  return stripped.startsWith('+420') ? stripped : `+420${stripped}`
+}
+
 async function submitSignup() {
   signupError.value = ''
   if (!contact.value.trim() || detectedType.value === 'unknown') return
@@ -375,8 +381,8 @@ async function submitSignup() {
     await $fetch('/api/pizzaday/signup', {
       method: 'POST',
       body: {
-        email: isPhone ? '' : contact.value.trim(),
-        phone: isPhone ? contact.value.trim() : '',
+        email: isPhone ? '' : contact.value.trim().toLowerCase(),
+        phone: isPhone ? normalizePhone(contact.value) : '',
         prefLang: prefLang.value,
       },
     })
@@ -487,8 +493,8 @@ const copy = {
       langLabel: 'Preferovaný jazyk',
       submit: 'Přihlásit se',
       fine: 'Odhlásit se můžeš jedním klikem. Údaje neposkytujeme třetím stranám.',
-      success: 'Hotovo! Uvidíme se v parku.',
-      successSub: 'Potvrzovací e-mail je na cestě. Pokud nedorazí do pěti minut, mrkni do spamu.',
+      success: 'Hotovo!',
+      successSub: 'Dáme ti vědět, jakmile se něco bude chystat.',
     },
     fab: { label: 'Pozvánky do mailu/mobilu', sub: 'Dozvíš se, kdy bude další akce' },
     footer: {
@@ -579,8 +585,8 @@ const copy = {
       langLabel: 'Preferred language',
       submit: 'Subscribe',
       fine: "One-click unsubscribe. We don't sell or share your details.",
-      success: "You're in! See you in the park.",
-      successSub: "Confirmation email is on its way. If it doesn't show up in five minutes, check your spam folder.",
+      success: "Done!",
+      successSub: "We'll let you know when something's coming up.",
     },
     fab: { label: 'Newsletter', sub: 'Hear when the next one happens' },
     footer: {
