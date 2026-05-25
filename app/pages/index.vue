@@ -486,7 +486,7 @@ const copy = {
     },
     signup: {
       head: 'Buď u dalších akcí', headAccent: 'dalších akcí', eyebrow: 'Pozvánky',
-      lede: 'Maximálně jeden e-mail měsíčně. Pošleme upozornění před akcemi, případně změny v programu (déšť, posun času). Nespamujeme.',
+      lede: 'Pošleme ti upozornění o nových akcích. Nespamujeme.',
       emailLabel: 'E-mail', emailPh: 'tvoje@adresa.cz',
       phoneLabel: 'Telefon / SMS', phonePh: '+420',
       contactHint: 'Vyplň aspoň jedno z polí výše.',
